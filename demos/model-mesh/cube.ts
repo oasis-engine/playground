@@ -60,7 +60,7 @@ export function createCube(engine: Engine, rootEntity: Entity) {
     })
     .then((tex) => {
       const mtl = new Material(engine, shader);
-      meshRenderer.setMaterial(mtl);
       mtl.shaderData.setTexture("u_baseColor", tex);
+      meshRenderer.setMaterial(mtl);
     });
 }

@@ -1,42 +1,23 @@
-import { OrbitControl } from "@oasis-engine/controls";
-import {
-  AssetType,
-  BlinnPhongMaterial,
-  Camera,
-  DirectLight,
-  Entity,
-  Material,
-  MeshRenderer,
-  ModelMesh,
-  PrimitiveMesh,
-  Script,
-  SystemInfo,
-  Texture2D,
-  Vector3,
-  Shader,
-  WebGLEngine,
-  Logger,
-  Color
-} from "oasis-engine";
+import { Camera, Vector3, WebGLEngine, Logger } from "oasis-engine";
 import { createCube } from "./cube";
+import { createPlane } from "./plane";
 
 // Create engine
 const engine = new WebGLEngine("o3-demo");
-engine.canvas.width = window.innerWidth * SystemInfo.devicePixelRatio;
-engine.canvas.height = window.innerHeight * SystemInfo.devicePixelRatio;
+engine.canvas.resizeByClientSize();
 
 // Create root entity
 const rootEntity = engine.sceneManager.activeScene.createRootEntity();
 
 // Create camera
 const cameraEntity = rootEntity.createChild("Camera");
-cameraEntity.transform.setPosition(5, 5, 5);
-cameraEntity.transform.lookAt(new Vector3(0, 0, 0));
+cameraEntity.transform.setPosition(0, 10000, 10000);
+cameraEntity.transform.lookAt(new Vector3(0, 8000, 0));
 const camera = cameraEntity.addComponent(Camera);
-camera.fieldOfView = 60;
+camera.farClipPlane = 400000;
+camera.fieldOfView = 55;
 
-createCube(engine, rootEntity);
-
+// createCube(engine, rootEntity);
+createPlane(engine, rootEntity);
 engine.run();
-
 Logger.enable();
