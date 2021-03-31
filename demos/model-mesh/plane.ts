@@ -10,10 +10,7 @@ import {
   Script,
   Shader,
   Texture2D,
-  TextureWrapMode,
-  UnlitMaterial,
-  Vector4
-} from "oasis-engine";
+  TextureWrapMode} from "oasis-engine";
 
 const shader = Shader.create(
   "test-plane",
@@ -46,7 +43,7 @@ void main() {
   float fogDistance = length(v_position);
   float fogAmount = 1. - exp2(-u_fogDensity * u_fogDensity * fogDistance * fogDistance * 1.442695);
   fogAmount = clamp(fogAmount, 0., 1.);
-  gl_FragColor = mix(color, u_fogColor, fogAmount);
+  gl_FragColor = mix(color, u_fogColor, fogAmount); 
 }
 `
 );
@@ -63,7 +60,7 @@ class PlaneAnimation extends Script {
 
     const positions = mesh.getPositions();
     for (var i = 0; i < vertexCount; i++) {
-      positions[i].z += Math.random() * 10000 - 10000;
+      positions[i].z += Math.random() * 100 - 100;
       initZ[i] = positions[i].z;
     }
     this.initZ = initZ;
@@ -90,10 +87,10 @@ export function createPlane(engine: Engine, entity: Entity) {
   const planeEntity = entity.createChild("plane");
   planeEntity.transform.setRotation(-90, 0, 0);
   const meshRenderer = planeEntity.addComponent(MeshRenderer);
-  const plane = PrimitiveMesh.createPlane(engine, 1245000, 1245000, 100, 100, false);
+  const plane = PrimitiveMesh.createPlane(engine, 12450, 12450, 100, 100, false);
   meshRenderer.mesh = plane;
   planeEntity.addComponent(PlaneAnimation);
-  
+
   engine.resourceManager
     .load<Texture2D>({
       url: "https://gw.alipayobjects.com/mdn/rms_2e421e/afts/img/A*fRtNTKrsq3YAAAAAAAAAAAAAARQnAQ",
@@ -103,8 +100,8 @@ export function createPlane(engine: Engine, entity: Entity) {
       const mtl = new Material(engine, shader);
       mtl.shaderData.setTexture("u_baseColor", res);
       mtl.shaderData.setColor("u_fogColor", new Color(0.25, 0.25, 0.25, 1));
-      mtl.shaderData.setFloat("u_fogDensity", 0.00001);
-      mtl.shaderData.setColor("u_color", new Color(0, 0.266666667, 1, 1))
+      mtl.shaderData.setFloat("u_fogDensity", 0.0004);
+      mtl.shaderData.setColor("u_color", new Color(86 / 255, 182 / 255, 194 / 255, 1));
       res.wrapModeU = TextureWrapMode.Repeat;
       res.wrapModeV = TextureWrapMode.Repeat;
       res.anisoLevel = 8;
