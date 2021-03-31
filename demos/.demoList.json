@@ -28,8 +28,8 @@
     "src": "video-texture"
   },
   {
-    "label": "自定义几何体",
-    "src": "custom-mesh"
+    "label": "自定义缓冲网格",
+    "src": "custom-buffer-mesh"
   },
   {
     "label": "视锥体剔除",
