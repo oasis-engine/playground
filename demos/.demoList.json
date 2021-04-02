@@ -6,7 +6,7 @@
   { "label": "帧拾取", "src": "framebuffer-picker" },
   { "label": "环境反射探针", "src": "probe-reflection" },
   { "label": "视频纹理", "src": "video-texture" },
-  { "label": "自定义缓冲网格", "src": "custom-buffer-mesh" },
+  { "label": "缓冲网格", "src": "buffer-mesh" },
   { "label": "视锥体剔除", "src": "renderer-cull" },
   { "label": "粒子渲染器", "src": "particle-renderer" },
   { "label": "粒子渲染器精灵图", "src": "particle-renderer-spritesheet" },
