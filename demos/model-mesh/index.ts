@@ -1,5 +1,4 @@
 import { Camera, Vector3, WebGLEngine, Logger } from "oasis-engine";
-import { createCube } from "./cube";
 import { createPlane } from "./plane";
 
 // Create engine
@@ -20,4 +19,3 @@ camera.fieldOfView = 55;
 // createCube(engine, rootEntity);
 createPlane(engine, rootEntity);
 engine.run();
-Logger.enable();

@@ -13,5 +13,6 @@
   { "label": "相机渲染遮罩", "src": "camera-culling-mask" },
   { "label": "动画渐变过渡", "src": "animation-cross-fade" },
   { "label": "自定义材质-水", "src": "shader-water" },
-  { "label": "精灵渲染器", "src": "sprite-renderer" }
+  { "label": "精灵渲染器", "src": "sprite-renderer" },
+  { "label": "ModelMesh", "src": "model-mesh" }
 ]

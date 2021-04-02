@@ -10,7 +10,8 @@ import {
   Script,
   Shader,
   Texture2D,
-  TextureWrapMode} from "oasis-engine";
+  TextureWrapMode
+} from "oasis-engine";
 
 const shader = Shader.create(
   "test-plane",
@@ -96,15 +97,16 @@ export function createPlane(engine: Engine, entity: Entity) {
       url: "https://gw.alipayobjects.com/mdn/rms_2e421e/afts/img/A*fRtNTKrsq3YAAAAAAAAAAAAAARQnAQ",
       type: AssetType.Texture2D
     })
-    .then((res) => {
+    .then((texture) => {
       const mtl = new Material(engine, shader);
-      mtl.shaderData.setTexture("u_baseColor", res);
-      mtl.shaderData.setColor("u_fogColor", new Color(0.25, 0.25, 0.25, 1));
-      mtl.shaderData.setFloat("u_fogDensity", 0.0004);
-      mtl.shaderData.setColor("u_color", new Color(86 / 255, 182 / 255, 194 / 255, 1));
-      res.wrapModeU = TextureWrapMode.Repeat;
-      res.wrapModeV = TextureWrapMode.Repeat;
-      res.anisoLevel = 8;
+      const { shaderData } = mtl;
+      shaderData.setTexture("u_baseColor", texture);
+      shaderData.setColor("u_fogColor", new Color(0.25, 0.25, 0.25, 1));
+      shaderData.setFloat("u_fogDensity", 0.0004);
+      shaderData.setColor("u_color", new Color(86 / 255, 182 / 255, 194 / 255, 1));
+      texture.wrapModeU = TextureWrapMode.Repeat;
+      texture.wrapModeV = TextureWrapMode.Repeat;
+      texture.anisoLevel = 8;
       meshRenderer.setMaterial(mtl);
     });
 }
