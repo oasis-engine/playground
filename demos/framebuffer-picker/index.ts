@@ -3,12 +3,12 @@ import { FramebufferPicker } from "@oasis-engine/framebuffer-picker";
 import {
   AssetType,
   Camera,
+  Color,
   EnvironmentMapLight,
   Logger,
   MeshRenderer,
   SystemInfo,
   Vector3,
-  Vector4,
   WebGLEngine
 } from "oasis-engine";
 
@@ -73,8 +73,8 @@ engine.resourceManager.load(ResourceList).then((res) => {
     }
   }
 
-  envLight.diffuseMap = res[1];
-  envLight.specularMap = res[2];
+  envLight.diffuseTexture = res[1];
+  envLight.specularTexture = res[2];
 
   // framebuffer picker
   let lastMaterial;
@@ -82,7 +82,7 @@ engine.resourceManager.load(ResourceList).then((res) => {
   let framebufferPicker = rootNode.addComponent(FramebufferPicker);
   framebufferPicker.camera = camera;
   framebufferPicker.onPick = (obj) => {
-    if (lastMaterial) lastMaterial.baseColorFactor = laseBaseColor;
+    if (lastMaterial) lastMaterial.baseColor = laseBaseColor;
 
     if (obj) {
       const { primitive, component } = obj;
@@ -94,8 +94,8 @@ engine.resourceManager.load(ResourceList).then((res) => {
       }
 
       lastMaterial = material;
-      laseBaseColor = material.baseColorFactor;
-      material.baseColorFactor = new Vector4(1, 0, 0, 1);
+      laseBaseColor = material.baseColor;
+      material.baseColor = new Color(1, 0, 0, 1);
     }
   };
 

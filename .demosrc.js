@@ -3,11 +3,11 @@ const pkg = require("./package.json");
 module.exports = {
   output: {
     dir: "dist", // 配置构建部署时输出的目录，默认dist目录
-    publicUrl: `/0.1/playground/` // 配置构建输出的资源根目录，默认是'/'
+    publicUrl: `/0.2/playground/` // 配置构建输出的资源根目录，默认是'/'
   },
   name: "Oasis Playground",
   version: `v${pkg.version}`,
-  homePage: "https://oasis3d.alipay.com/",
+  homePage: "https://oasis-engine.github.io",
   boxTheme: "monokai", // 配置代码编辑器的主题
   // 可选主题: active4d, allHallowsEve, amy, blackboard, brillianceBlack,
   // brillianceDull, chromeDevtools, cloudsMidnight, clouds, cobalt,
@@ -21,10 +21,12 @@ module.exports = {
   globalPackages: {
     js: [
       "https://cdn.jsdelivr.net/npm/dat.gui@0.7.7/build/dat.gui.min.js",
-      "https://gw.alipayobjects.com/os/lib/oasis-engine/0.1.0/dist/browser.min.js",
-      "https://gw.alipayobjects.com/os/lib/oasis-engine/tween/0.1.0/dist/browser.min.js",
-      "https://gw.alipayobjects.com/os/lib/oasis-engine/controls/0.1.0/dist/browser.js",
-      "https://gw.alipayobjects.com/os/lib/oasis-engine/framebuffer-picker/0.1.0/dist/browser.js"
+      "https://gw.alipayobjects.com/os/lib/oasis-engine/0.2.0/dist/browser.min.js",
+      "https://gw.alipayobjects.com/os/lib/oasis-engine/controls/0.2.0/dist/browser.js",
+      "https://gw.alipayobjects.com/os/lib/oasis-engine/framebuffer-picker/0.2.0/dist/browser.min.js"
+      // "http://localhost:5000/packages/oasis-engine/dist/browser.min.js",
+      // "http://localhost:5000/packages/controls/dist/browser.min.js",
+      // "http://localhost:5000/packages/framebuffer-picker/dist/browser.min.js"
     ]
   }
 };

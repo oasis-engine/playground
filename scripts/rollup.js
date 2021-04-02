@@ -13,7 +13,7 @@ const template = fs.readFileSync(path.join(__dirname, "./template.txt"), { encod
 
 async function build(input) {
   const templateAst = parse(template, { sourceType: "module", sourcemap: false });
-  
+
   const bundle = await rollup.rollup({
     input: input,
     plugins: [
@@ -23,7 +23,7 @@ async function build(input) {
         presets: ["@babel/preset-typescript"],
         plugins: [["@babel/plugin-proposal-class-properties", { loose: true }]],
         extensions
-      }),
+      })
     ],
 
     external: Object.keys(pkg.dependencies)

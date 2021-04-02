@@ -1,18 +1,16 @@
 {
   "private": true,
   "name": "oasis-playground",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "init": "tnpm install --by=yarn",
-    "reinstall": "rm -rf node_modules && tnpm run init",
-    "link": "tnpm link ../oasis3d/packages/*",
+    "link": "sudo npm link ../engine/packages/* --no-package-lock",
     "dev:vite": "vite",
     "dev": "demosify --serve",
-    "watch": "cd ../oasis3d && tnpm run watch",
     "build": "demosify --prod",
-    "b:mini": "node scripts/to-mini-program.js"
+    "b:mini": "node scripts/to-mini-program.js",
+    "add-demo": "node scripts/add-demo.js"
   },
   "repository": {
     "type": "git",
@@ -21,10 +19,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@oasis-engine/controls": "^0.1.0",
-    "@oasis-engine/framebuffer-picker": "^0.1.0",
+    "@oasis-engine/controls": "^0.2.0",
+    "@oasis-engine/framebuffer-picker": "^0.2.0",
     "dat.gui": "^0.7.7",
-    "oasis-engine": "^0.1.0"
+    "oasis-engine": "^0.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.1",
@@ -36,8 +34,11 @@
     "@babel/traverse": "^7.12.1",
     "@demosify/core": "^0.6.0",
     "@rollup/plugin-babel": "^5.2.1",
+    "chalk": "^4.1.0",
+    "copy-dir": "^1.3.0",
     "fs-extra": "^9.0.1",
     "husky": "^4.2.5",
+    "inquirer": "^7.3.3",
     "lint-staged": "^10.2.11",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.5",
@@ -53,7 +54,7 @@
     }
   },
   "lint-staged": {
-    "*.{ts,tsx}": [
+    "*.{ts,tsx,json}": [
       "prettier --write"
     ]
   }

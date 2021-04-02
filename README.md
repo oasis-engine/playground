@@ -5,19 +5,13 @@
 #### 1.1 初始化
 
 ```
-tnpm run init
+npm install
 ```
 
 #### 1.2 link
 
 ```
-tnpm run link
-```
-
-#### 1.3 重装
-
-```
-tnpm run reinstall
+npm run link
 ```
 
 ### 2. 本地开发
@@ -27,7 +21,7 @@ tnpm run reinstall
 > 该方式适用于线上效果开发。如果需要联调引擎源码，请使用 vite 开发
 
 ```
-tnpm run dev
+npm run dev
 ```
 
 #### 2.2 vite 开发
@@ -35,22 +29,29 @@ tnpm run dev
 > 保留了原来的 vite 开发流程，方便 link Oasis 仓库进行源码调试
 
 ```
-tnpm run dev:vite
+npm run dev:vite
 ```
 
 如果需要调试 Oasis 引擎源码，请先 link 再进行调试，即：
 
 ```
-tnpm run link
+npm run link
 ```
 
-如果需要监听引擎源码的变化，即同时调试引擎和游乐场，可运行：
+如果需要监听引擎源码的变化，即同时调试引擎和游乐场，可以在**引擎**的仓库里面运行 watch：
 
 ```
-tnpm run watch
+npm run watch
 ```
 
-> 注意： 默认 Oasis 引擎仓库在 ../oasis3d，若不是，请自行修改 script#watch
+> 注意： 默认 Oasis 引擎仓库在 ../engine，若不是，请自行修改 script#link
+
+#### 2.3 新建 demo
+
+```
+npm run add-demo
+```
+按照提示输入完英文名字和中文名字后，即可在`/demos/*****/index.ts` 进行开发
 
 ### 3. 发布
 

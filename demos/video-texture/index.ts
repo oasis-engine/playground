@@ -7,8 +7,10 @@ import {
   Color,
   DirectLight,
   EnvironmentMapLight,
+  request,
   SkyBox,
   SystemInfo,
+  Texture2D,
   TextureCubeMap,
   Vector3,
   WebGLEngine
@@ -37,14 +39,13 @@ envFolder.add(envLight, "diffuseIntensity", 0, 1);
 let directLightColor = { color: [255, 255, 255] };
 let directLightNode = rootEntity.createChild("dir_light");
 let directLight = directLightNode.addComponent(DirectLight);
-directLight.color = new Color(1, 1, 1);
 let dirFolder = gui.addFolder("DirectionalLight1");
 dirFolder.add(directLight, "enabled");
 dirFolder.addColor(directLightColor, "color").onChange((v) => (directLight.color = color2glColor(v)));
 dirFolder.add(directLight, "intensity", 0, 1);
 
 const ambient = rootEntity.addComponent(AmbientLight);
-ambient.color = new Color(0.2, 0.2, 0.2, 1);
+ambient.color = new Color(0.2, 0.2, 0.2);
 
 //-- create camera
 let cameraNode = rootEntity.createChild("camera_node");
@@ -55,9 +56,19 @@ cameraNode.addComponent(OrbitControl);
 Promise.all([
   engine.resourceManager
     .load("https://gw.alipayobjects.com/os/bmw-prod/83219f61-7d20-4704-890a-60eb92aa6159.gltf")
-    .then((gltf) => {
+    .then((gltf: any) => {
       rootEntity.addChild(gltf.defaultSceneRoot);
-      console.log(gltf);
+      const material = gltf.materials[0];
+      const video = document.getElementById("video") as HTMLVideoElement;
+      const texture = new Texture2D(engine, 960, 540, undefined, false);
+
+      function setImage() {
+        texture.setImageSource(video);
+        requestAnimationFrame(setImage);
+      }
+      setImage();
+
+      material.baseColorTexture = texture;
     }),
   engine.resourceManager
     .load<TextureCubeMap>({

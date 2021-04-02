@@ -2,13 +2,13 @@ import * as Babel from "@babel/standalone";
 
 /**
  * umd
- * [key:npm]:window[***]
+ * [pkgName]: globalName
  */
 const modules = {
-  "oasis-engine": "o3",
-  "@oasis-engine/controls": "o3Controls",
   "dat.gui": "dat",
-  "@oasis-engine/framebuffer-picker": "o3FramebufferPicker"
+  "oasis-engine": "oasisEngine",
+  "@oasis-engine/controls": "@oasisEngine/controls",
+  "@oasis-engine/framebuffer-picker": "@oasisEngine/framebufferPicker"
 };
 
 /** String.replace(reg,to) */
