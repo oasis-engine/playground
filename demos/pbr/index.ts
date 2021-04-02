@@ -7,6 +7,7 @@ import {
   Color,
   DirectLight,
   EnvironmentMapLight,
+  GLTFResource,
   SkyBox,
   SystemInfo,
   TextureCubeMap,
@@ -54,7 +55,7 @@ cameraNode.addComponent(OrbitControl);
 
 Promise.all([
   engine.resourceManager
-    .load("https://gw.alipayobjects.com/os/bmw-prod/83219f61-7d20-4704-890a-60eb92aa6159.gltf")
+    .load<GLTFResource>("https://gw.alipayobjects.com/os/bmw-prod/83219f61-7d20-4704-890a-60eb92aa6159.gltf")
     .then((gltf) => {
       rootEntity.addChild(gltf.defaultSceneRoot);
       console.log(gltf);

@@ -5,9 +5,11 @@ import {
   Camera,
   Color,
   EnvironmentMapLight,
+  GLTFResource,
+  LoadItem,
   Logger,
-  MeshRenderer,
   SystemInfo,
+  TextureCubeMap,
   Vector3,
   WebGLEngine
 } from "oasis-engine";
@@ -30,9 +32,8 @@ cameraNode.transform.position = new Vector3(0, 0, 30);
 const camera = cameraNode.addComponent(Camera);
 cameraNode.addComponent(OrbitControl);
 
-/** ResourceList.ts */
-const ResourceList = [
-  "https://gw.alipayobjects.com/os/bmw-prod/83219f61-7d20-4704-890a-60eb92aa6159.gltf",
+const resources: LoadItem[] = [
+  { url: "https://gw.alipayobjects.com/os/bmw-prod/83219f61-7d20-4704-890a-60eb92aa6159.gltf" },
   {
     urls: [
       "https://gw.alipayobjects.com/mdn/rms_7c464e/afts/img/A*Bk5FQKGOir4AAAAAAAAAAAAAARQnAQ",
@@ -57,8 +58,8 @@ const ResourceList = [
   }
 ];
 
-engine.resourceManager.load(ResourceList).then((res) => {
-  const gltf = res[0];
+engine.resourceManager.load(resources).then((res) => {
+  const gltf = <GLTFResource>res[0];
 
   let mesh = gltf.meshes[0];
   for (let x = 0; x < 5; x++) {
@@ -69,8 +70,8 @@ engine.resourceManager.load(ResourceList).then((res) => {
     }
   }
 
-  envLight.diffuseTexture = res[1];
-  envLight.specularTexture = res[2];
+  envLight.diffuseTexture = <TextureCubeMap>res[1];
+  envLight.specularTexture = <TextureCubeMap>res[2];
 
   // framebuffer picker
   let lastMaterial;

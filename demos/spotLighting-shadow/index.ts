@@ -59,7 +59,7 @@ function createCuboidGeometry(name, position, rotation, w, h, d, castShadow: boo
 }
 
 let mtl = new BlinnPhongMaterial(engine);
-mtl.diffuseColor = new Color(0.1, 0.9, 0.8, 1);
+mtl.baseColor = new Color(0.1, 0.9, 0.8, 1);
 //-- create light entity
 let lighthouse = rootEntity.createChild("lighthouse");
 let light1 = lighthouse.createChild("light1");

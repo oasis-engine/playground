@@ -9,6 +9,7 @@ import {
   CubeProbe,
   DirectLight,
   EnvironmentMapLight,
+  GLTFResource,
   Layer,
   MeshRenderer,
   PrimitiveMesh,
@@ -51,7 +52,7 @@ const skybox = rootEntity.addComponent(SkyBox);
 async function loadModel() {
   return Promise.all([
     engine.resourceManager
-      .load("https://gw.alipayobjects.com/os/bmw-prod/83219f61-7d20-4704-890a-60eb92aa6159.gltf")
+      .load<GLTFResource>("https://gw.alipayobjects.com/os/bmw-prod/83219f61-7d20-4704-890a-60eb92aa6159.gltf")
       .then((gltf) => {
         rootEntity.addChild(gltf.defaultSceneRoot);
         console.log(gltf);
@@ -101,11 +102,11 @@ function createSphere(material) {
 
 function reflectionDemo() {
   const sphere1Mat = new BlinnPhongMaterial(engine);
-  sphere1Mat.diffuseColor = new Color(1, 0, 0, 1);
+  sphere1Mat.baseColor = new Color(1, 0, 0, 1);
   const sphere2Mat = new BlinnPhongMaterial(engine);
-  sphere2Mat.diffuseColor = new Color(0, 1, 0, 1);
+  sphere2Mat.baseColor = new Color(0, 1, 0, 1);
   const sphere3Mat = new BlinnPhongMaterial(engine);
-  sphere3Mat.diffuseColor = new Color(0, 0, 1, 1);
+  sphere3Mat.baseColor = new Color(0, 0, 1, 1);
 
   const sphere1 = createSphere(sphere1Mat);
   const sphere2 = createSphere(sphere2Mat);

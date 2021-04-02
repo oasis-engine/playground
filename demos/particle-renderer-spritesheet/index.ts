@@ -25,7 +25,7 @@ cameraEntity.transform.position = new Vector3(0, 0, 50);
 cameraEntity.addComponent(Camera);
 const controls = cameraEntity.addComponent(OrbitControl);
 controls.autoRotate = true;
-controls.autoRotateSpeed = 10;
+controls.autoRotateSpeed = Math.PI / 5;
 
 engine.run();
 

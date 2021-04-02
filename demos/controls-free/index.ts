@@ -28,7 +28,7 @@ const controler = cameraNode.addComponent(FreeControl);
 controler.movementSpeed = 100;
 controler.rotateSpeed = 1;
 
-const geometry = PrimitiveMesh.createCuboid(engine, 50, 50, 50);
+const cuboid = PrimitiveMesh.createCuboid(engine, 50, 50, 50);
 const material = new BlinnPhongMaterial(engine);
 material.emissiveColor = new Color(0.5, 0.6, 0.6, 1);
 
@@ -42,7 +42,7 @@ for (let i = 0; i < 100; i++) {
   let cube = rootNode.createChild("cube");
   cube.transform.setPosition(Math.random() * 2000 - 1000, Math.random() * 200, Math.random() * 2000 - 1000);
   const cubeRenderer = cube.addComponent(MeshRenderer);
-  cubeRenderer.mesh = geometry;
+  cubeRenderer.mesh = cuboid;
   cubeRenderer.setMaterial(material);
 }
 
