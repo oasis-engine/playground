@@ -15,5 +15,6 @@
   { "label": "自定义材质-水", "src": "shader-water" },
   { "label": "精灵渲染器", "src": "sprite-renderer" },
   { "label": "变换", "src": "transform-x" },
+  { "label": "使用 PBR", "src": "use-pbr" },
   { "label": "ModelMesh", "src": "model-mesh" }
 ]
