@@ -1,66 +1,19 @@
 [
-  {
-    "label": "PBR材质",
-    "src": "pbr"
-  },
-  {
-    "label": "骨骼动画",
-    "src": "skeleton-animation"
-  },
-  {
-    "label": "聚光灯-阴影",
-    "src": "spotLighting-shadow"
-  },
-  {
-    "label": "漫游相机",
-    "src": "controls-free"
-  },
-  {
-    "label": "帧拾取",
-    "src": "framebuffer-picker"
-  },
-  {
-    "label": "环境反射探针",
-    "src": "probe-reflection"
-  },
-  {
-    "label": "视频纹理",
-    "src": "video-texture"
-  },
-  {
-    "label": "自定义缓冲网格",
-    "src": "custom-buffer-mesh"
-  },
-  {
-    "label": "视锥体剔除",
-    "src": "renderer-cull"
-  },
-  {
-    "label": "粒子渲染器",
-    "src": "particle-renderer"
-  },
-  {
-    "label": "粒子渲染器精灵图",
-    "src": "particle-renderer-spritesheet"
-  },
-  {
-    "label": "相机渲染遮罩",
-    "src": "camera-culling-mask"
-  },
-  {
-    "label": "动画渐变过渡",
-    "src": "animation-cross-fade"
-  },
-  {
-    "label": "自定义材质-水",
-    "src": "shader-water"
-  },
-  {
-    "label": "精灵渲染器",
-    "src": "sprite-renderer"
-  },
-  {
-    "label": "变换",
-    "src": "transform-x"
-  }
+  { "label": "PBR材质", "src": "pbr" },
+  { "label": "骨骼动画", "src": "skeleton-animation" },
+  { "label": "聚光灯-阴影", "src": "spotLighting-shadow" },
+  { "label": "漫游相机", "src": "controls-free" },
+  { "label": "帧拾取", "src": "framebuffer-picker" },
+  { "label": "环境反射探针", "src": "probe-reflection" },
+  { "label": "视频纹理", "src": "video-texture" },
+  { "label": "自定义缓冲网格", "src": "custom-buffer-mesh" },
+  { "label": "视锥体剔除", "src": "renderer-cull" },
+  { "label": "粒子渲染器", "src": "particle-renderer" },
+  { "label": "粒子渲染器精灵图", "src": "particle-renderer-spritesheet" },
+  { "label": "相机渲染遮罩", "src": "camera-culling-mask" },
+  { "label": "动画渐变过渡", "src": "animation-cross-fade" },
+  { "label": "自定义材质-水", "src": "shader-water" },
+  { "label": "精灵渲染器", "src": "sprite-renderer" },
+  { "label": "变换", "src": "transform-x" },
+  { "label": "ModelMesh", "src": "model-mesh" }
 ]

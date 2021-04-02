@@ -30,7 +30,7 @@
     "@babel/parser": "^7.12.1",
     "@babel/plugin-proposal-class-properties": "^7.12.1",
     "@babel/preset-typescript": "^7.12.1",
-    "@babel/standalone": "^7.12.6",
+    "@babel/standalone": "7.12.6",
     "@babel/traverse": "^7.12.1",
     "@demosify/core": "^0.6.0",
     "@rollup/plugin-babel": "^5.2.1",
