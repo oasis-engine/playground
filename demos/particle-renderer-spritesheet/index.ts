@@ -2,14 +2,13 @@ import { OrbitControl } from "@oasis-engine/controls";
 import {
   AssetType,
   Camera,
+  Color,
   ParticleRenderer,
+  ParticleRendererBlendMode,
   SystemInfo,
   Texture2D,
-  TextureFilterMode,
-  TextureWrapMode,
   Vector3,
-  WebGLEngine,
-  WrapMode
+  WebGLEngine
 } from "oasis-engine";
 
 //-- create engine object
@@ -26,7 +25,7 @@ cameraEntity.transform.position = new Vector3(0, 0, 50);
 cameraEntity.addComponent(Camera);
 const controls = cameraEntity.addComponent(OrbitControl);
 controls.autoRotate = true;
-controls.autoRotateSpeed = 5;
+controls.autoRotateSpeed = Math.PI / 5;
 
 engine.run();
 
@@ -119,7 +118,7 @@ const spriteSheet = [
 
 engine.resourceManager
   .load<Texture2D>({
-    url: "https://gw-office.alipayobjects.com/basement_prod/f474fffc-f76c-4a95-80b4-ba42170f3fe9.png",
+    url: "https://gw.alipayobjects.com/mdn/rms_d27172/afts/img/A*_oorR5SrpXcAAAAAAAAAAAAAARQnAQ",
     type: AssetType.Texture2D
   })
   .then((resource) => {
@@ -134,11 +133,12 @@ engine.resourceManager
     particles.rotateVelocityRandomness = 1;
     particles.size = 1;
     particles.sizeRandomness = 1;
-    particles.color = new Vector3(0.5, 0.5, 0.5);
+    particles.color = new Color(0.5, 0.5, 0.5);
     particles.colorRandomness = 1;
     particles.isFadeIn = true;
     particles.isFadeOut = true;
     particles.texture = resource;
     particles.spriteSheet = spriteSheet;
+    particles.blendMode = ParticleRendererBlendMode.Additive;
     particles.start();
   });

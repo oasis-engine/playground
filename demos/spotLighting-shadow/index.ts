@@ -1,17 +1,16 @@
+import { OrbitControl } from "@oasis-engine/controls";
 import {
   BlinnPhongMaterial,
   Camera,
   Color,
-  CuboidGeometry,
-  GeometryRenderer,
+  MeshRenderer,
+  PrimitiveMesh,
   Script,
-  SphereGeometry,
   SpotLight,
   SystemInfo,
   Vector3,
   WebGLEngine
 } from "oasis-engine";
-import { OrbitControl } from "@oasis-engine/controls";
 const target = new Vector3(0, -3, 0);
 const up = new Vector3(0, 1, 0);
 
@@ -52,15 +51,15 @@ function createCuboidGeometry(name, position, rotation, w, h, d, castShadow: boo
   let obj = rootEntity.createChild(name);
   obj.position = new Vector3(...position);
   obj.transform.rotation = new Vector3(rotation[0], rotation[0], rotation[0]);
-  let cubeRenderer = obj.addComponent(GeometryRenderer);
-  cubeRenderer.geometry = new CuboidGeometry(rootEntity.engine, w, h, d);
-  cubeRenderer.material = mtl;
+  let cubeRenderer = obj.addComponent(MeshRenderer);
+  cubeRenderer.mesh = PrimitiveMesh.createCuboid(rootEntity.engine, w, h, d);
+  cubeRenderer.setMaterial(mtl);
   cubeRenderer["recieveShadow"] = !castShadow;
   cubeRenderer["castShadow"] = castShadow;
 }
 
 let mtl = new BlinnPhongMaterial(engine);
-mtl.diffuseColor = new Color(0.1, 0.9, 0.8, 1);
+mtl.baseColor = new Color(0.1, 0.9, 0.8, 1);
 //-- create light entity
 let lighthouse = rootEntity.createChild("lighthouse");
 let light1 = lighthouse.createChild("light1");
@@ -74,9 +73,9 @@ spotLight["enableShadow"] = true;
 spotLight["shadow"].bias = 0.0001;
 spotLight["shadow"].intensity = 0.2;
 
-let sphereRenderer3 = light1.addComponent(GeometryRenderer);
-sphereRenderer3.geometry = new SphereGeometry(engine, 0.1);
-sphereRenderer3.material = mtl;
+let sphereRenderer3 = light1.addComponent(MeshRenderer);
+sphereRenderer3.mesh = PrimitiveMesh.createSphere(engine, 0.1);
+sphereRenderer3.setMaterial(mtl);
 
 //-- create geometry
 createCuboidGeometry("cubiod1", [0, -3, 0], [0, 0, 0], 10, 0.1, 10);

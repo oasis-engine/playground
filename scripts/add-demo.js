@@ -27,23 +27,23 @@ function inquirerDemo() {
       {
         type: "input",
         name: "srcName",
-        message: "新建 demo 文件名"
+        message: "file name"
       },
       {
         type: "input",
         name: "labelName",
-        message: "新建 demo 中文名（最终展示的名字）"
+        message: "displayed name"
       }
     ])
     .then((answers) => {
       const { srcName, labelName } = answers;
       if (!checkIsKebabCase(srcName)) {
         throw new Error(
-          `为了统一规范，demo 命名格式请设置为 kebab-case，例如: skeleton-animation 而不是 skeletonAnimation`
+          `To unify the standard, please set the demo naming format with kebab-case, for example: use "skeleton-animation" instead of "skeletonAnimation"`
         );
       }
       if (isDemoExist(srcName)) {
-        throw new Error(`demo ${srcName} 已经存在`);
+        throw new Error(`demo ${srcName} already exists`);
       }
       return {
         srcName,

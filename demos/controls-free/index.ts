@@ -5,12 +5,11 @@ import { FreeControl } from "@oasis-engine/controls";
 import {
   Camera,
   BlinnPhongMaterial,
-  CuboidGeometry,
-  GeometryRenderer,
-  PlaneGeometry,
-  PrimitiveTopology,
+  MeshRenderer,
+  MeshTopology,
   WebGLEngine,
-  Color
+  Color,
+  PrimitiveMesh
 } from "oasis-engine";
 
 const engine = new WebGLEngine("o3-demo");
@@ -29,31 +28,31 @@ const controler = cameraNode.addComponent(FreeControl);
 controler.movementSpeed = 100;
 controler.rotateSpeed = 1;
 
-const geometry = new CuboidGeometry(engine, 50, 50, 50);
+const cuboid = PrimitiveMesh.createCuboid(engine, 50, 50, 50);
 const material = new BlinnPhongMaterial(engine);
 material.emissiveColor = new Color(0.5, 0.6, 0.6, 1);
 
-let groundGeometry = new PlaneGeometry(engine, 2000, 2000, 100, 100);
-groundGeometry.subGeometry.topology = PrimitiveTopology.LineStrip;
-let groundMaterial = new BlinnPhongMaterial(engine);
+const groundGeometry = PrimitiveMesh.createPlane(engine, 2000, 2000, 100, 100);
+groundGeometry.subMesh.topology = MeshTopology.LineStrip;
+const groundMaterial = new BlinnPhongMaterial(engine);
 groundMaterial.emissiveColor = new Color(1, 1, 1, 1);
 
-// meshes in scene
+// create meshes in scene
 for (let i = 0; i < 100; i++) {
   let cube = rootNode.createChild("cube");
   cube.transform.setPosition(Math.random() * 2000 - 1000, Math.random() * 200, Math.random() * 2000 - 1000);
-  const cubeRenderer = cube.addComponent(GeometryRenderer);
-  cubeRenderer.geometry = geometry;
-  cubeRenderer.material = material;
+  const cubeRenderer = cube.addComponent(MeshRenderer);
+  cubeRenderer.mesh = cuboid;
+  cubeRenderer.setMaterial(material);
 }
 
-// ground
+// Ground
 const ground = rootNode.createChild("ground");
 ground.transform.setPosition(0, -25, 0);
-ground.transform.rotateXYZ(-90, 0, 0);
-const groundRender = ground.addComponent(GeometryRenderer);
-groundRender.geometry = groundGeometry;
-groundRender.material = groundMaterial;
+ground.transform.rotate(-90, 0, 0);
+const groundRender = ground.addComponent(MeshRenderer);
+groundRender.mesh = groundGeometry;
+groundRender.setMaterial(groundMaterial);
 
-// 启动引擎
+// Run engine
 engine.run();

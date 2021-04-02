@@ -1,13 +1,13 @@
 {
   "private": true,
   "name": "oasis-playground",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "link": "sudo npm link ../engine/packages/* --no-package-lock",
-    "dev:vite": "vite",
-    "dev": "demosify --serve",
+    "dev": "vite",
+    "dev:demosify": "demosify --serve",
     "build": "demosify --prod",
     "b:mini": "node scripts/to-mini-program.js",
     "add-demo": "node scripts/add-demo.js"
@@ -19,10 +19,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@oasis-engine/controls": "^0.2.0",
-    "@oasis-engine/framebuffer-picker": "^0.2.0",
+    "@oasis-engine/controls": "^0.3.0",
+    "@oasis-engine/framebuffer-picker": "^0.3.0",
     "dat.gui": "^0.7.7",
-    "oasis-engine": "^0.2.0"
+    "oasis-engine": "^0.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.1",
@@ -30,7 +30,7 @@
     "@babel/parser": "^7.12.1",
     "@babel/plugin-proposal-class-properties": "^7.12.1",
     "@babel/preset-typescript": "^7.12.1",
-    "@babel/standalone": "^7.12.6",
+    "@babel/standalone": "7.12.6",
     "@babel/traverse": "^7.12.1",
     "@demosify/core": "^0.6.0",
     "@rollup/plugin-babel": "^5.2.1",

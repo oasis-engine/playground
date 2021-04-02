@@ -1,16 +1,5 @@
 // import { OrbitControl } from "@oasis-engine/controls";
-import {
-  AssetType,
-  Camera,
-  ParticleRenderer,
-  SystemInfo,
-  Texture2D,
-  TextureFilterMode,
-  TextureWrapMode,
-  Vector3,
-  WebGLEngine,
-  WrapMode
-} from "oasis-engine";
+import { AssetType, Camera, Color, ParticleRenderer, SystemInfo, Texture2D, Vector3, WebGLEngine } from "oasis-engine";
 
 //-- create engine object
 const engine = new WebGLEngine("o3-demo");
@@ -50,7 +39,7 @@ engine.resourceManager
     particles.rotateVelocityRandomness = 1;
     particles.size = 1;
     particles.sizeRandomness = 0.8;
-    particles.color = new Vector3(0.5, 0.5, 0.5);
+    particles.color = new Color(0.5, 0.5, 0.5);
     particles.colorRandomness = 1;
     particles.isFadeIn = true;
     particles.isFadeOut = true;

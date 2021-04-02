@@ -19,11 +19,11 @@ light.intensity = 1.2;
 
 // init cube
 const cubeEntity = rootEntity.createChild("cube");
-const renderer = cubeEntity.addComponent(o3.GeometryRenderer);
-renderer.geometry = new o3.CuboidGeometry(engine);
-const material = new o3.BlinnPhongMaterial(engine, "blinn");
-material.emission = new o3.Vector4(1, 0.25, 0.25, 1);
-renderer.material = material;
+const renderer = cubeEntity.addComponent(o3.MeshRenderer);
+renderer.mesh = o3.PrimitiveMesh.createCuboid(engine, 1, 1, 1);
+const material = new o3.BlinnPhongMaterial(engine);
+material.baseColor = new o3.Color(1, 0.25, 0.25, 1);
+renderer.setMaterial(material);
 
 engine.run();
 
