@@ -1,14 +1,13 @@
 import { OrbitControl } from "@oasis-engine/controls";
 import * as dat from "dat.gui";
 import {
+  AmbientLight,
   Animation,
   Camera,
   Color,
   DirectLight,
   GLTFResource,
-  PBRMaterial,
   SystemInfo,
-  Vector3,
   WebGLEngine
 } from "oasis-engine";
 
@@ -23,27 +22,25 @@ const scene = engine.sceneManager.activeScene;
 const rootEntity = scene.createRootEntity();
 const lightEntity = rootEntity.createChild("light");
 lightEntity.transform.rotate(0, 180, 0);
-lightEntity.addComponent(DirectLight);
+
+const ambient = lightEntity.addComponent(AmbientLight);
+ambient.color = new Color(0.2, 0.2, 0.2, 1);
+const light = lightEntity.addComponent(DirectLight);
+light.color = new Color(0.8, 0.8, 0.8, 1.0);
 
 //-- create camera
 const cameraEntity = rootEntity.createChild("camera_entity");
-cameraEntity.transform.position = new Vector3(0, 0, -10);
+cameraEntity.transform.setPosition(0, 0, -10);
 cameraEntity.addComponent(Camera);
 cameraEntity.addComponent(OrbitControl);
 
 engine.run();
 
 engine.resourceManager
-  .load<GLTFResource>(
-    "https://gw.alipayobjects.com/os/OasisHub/e190227d-d527-4a8d-9981-b4bf2da3dc2c/110000216/0.9421391626744058.gltf"
-  )
+  .load<GLTFResource>("https://gw.alipayobjects.com/os/OasisHub/267000040/494/redPacket.gltf")
   .then((asset) => {
-    const { animations, defaultSceneRoot, materials } = asset;
+    const { animations, defaultSceneRoot } = asset;
     const animationNameList = animations.map(({ name }) => name);
-
-    materials.forEach((material) => {
-      (<PBRMaterial>material).baseColor = new Color(1, 1, 1, 1);
-    });
 
     rootEntity.addChild(defaultSceneRoot);
 

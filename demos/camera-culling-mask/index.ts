@@ -22,7 +22,7 @@ const cubeEntity = rootEntity.createChild("cube");
 const renderer = cubeEntity.addComponent(o3.MeshRenderer);
 renderer.mesh = o3.PrimitiveMesh.createCuboid(engine, 1, 1, 1);
 const material = new o3.BlinnPhongMaterial(engine);
-material.emissiveColor = new o3.Color(1, 0.25, 0.25, 1);
+material.baseColor = new o3.Color(1, 0.25, 0.25, 1);
 renderer.setMaterial(material);
 
 engine.run();
