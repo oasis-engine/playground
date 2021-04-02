@@ -5,9 +5,11 @@ import {
   Camera,
   Color,
   EnvironmentMapLight,
+  GLTFResource,
+  LoadItem,
   Logger,
-  MeshRenderer,
   SystemInfo,
+  TextureCubeMap,
   Vector3,
   WebGLEngine
 } from "oasis-engine";
@@ -30,9 +32,8 @@ cameraNode.transform.position = new Vector3(0, 0, 30);
 const camera = cameraNode.addComponent(Camera);
 cameraNode.addComponent(OrbitControl);
 
-/** ResourceList.ts */
-const ResourceList = [
-  "https://gw.alipayobjects.com/os/bmw-prod/83219f61-7d20-4704-890a-60eb92aa6159.gltf",
+const resources: LoadItem[] = [
+  { url: "https://gw.alipayobjects.com/os/bmw-prod/83219f61-7d20-4704-890a-60eb92aa6159.gltf" },
   {
     urls: [
       "https://gw.alipayobjects.com/mdn/rms_7c464e/afts/img/A*Bk5FQKGOir4AAAAAAAAAAAAAARQnAQ",
@@ -57,24 +58,20 @@ const ResourceList = [
   }
 ];
 
-engine.resourceManager.load(ResourceList).then((res) => {
-  const gltf = res[0];
+engine.resourceManager.load(resources).then((res) => {
+  const gltf = <GLTFResource>res[0];
 
   let mesh = gltf.meshes[0];
   for (let x = 0; x < 5; x++) {
     for (let y = 0; y < 5; y++) {
       let testNode = rootNode.createChild("test_mesh" + x + y);
+      testNode.addChild(gltf.defaultSceneRoot.clone());
       testNode.transform.position = new Vector3((x - 2) * 5, (y - 2) * 5, 0);
-      testNode.transform.rotation = new Vector3(90, 0, 0);
-
-      const meshRender = testNode.addComponent(MeshRenderer);
-      meshRender.mesh = mesh;
-      meshRender.setSharedMaterial(0, gltf.materials[0]);
     }
   }
 
-  envLight.diffuseTexture = res[1];
-  envLight.specularTexture = res[2];
+  envLight.diffuseTexture = <TextureCubeMap>res[1];
+  envLight.specularTexture = <TextureCubeMap>res[2];
 
   // framebuffer picker
   let lastMaterial;
@@ -86,12 +83,7 @@ engine.resourceManager.load(ResourceList).then((res) => {
 
     if (obj) {
       const { primitive, component } = obj;
-      const idx = component.mesh.primitives.indexOf(primitive);
-      let material = component.getInstanceMaterial(idx);
-      if (!material) {
-        material = component.getSharedMaterial(idx).clone();
-        component.setMaterial(idx, material);
-      }
+      let material = component.getInstanceMaterial();
 
       lastMaterial = material;
       laseBaseColor = material.baseColor;

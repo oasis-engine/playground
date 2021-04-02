@@ -19,7 +19,12 @@ cameraEntity.transform.position = new Vector3(0, 0, 12);
 engine.resourceManager
   .load({
     // @ts-ignore
-    url: "http://alipay-rmsdeploy-image.cn-hangzhou.alipay.aliyun-inc.com/bakery/Fish.json",
+    urls: [
+      "https://gw.alipayobjects.com/os/OasisHub/dfad57bd-b6ae-4c73-9a77-d74d66ab8757/1617361412465.json",
+      "https://gw.alipayobjects.com/os/OasisHub/bb62c664-59ff-437a-88a8-6c8a42c8bbd7/1617361412468.atlas",
+      "https://gw.alipayobjects.com/zos/OasisHub/72300d5b-d2b0-407d-9f9b-1b0e4f80e935/1617361412468.png"
+    ],
+    // @ts-ignore
     type: "spine"
   })
   .then((spineEntity: Entity) => {

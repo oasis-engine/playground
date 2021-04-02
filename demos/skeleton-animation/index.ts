@@ -4,6 +4,7 @@ import {
   Camera,
   DirectLight,
   EnvironmentMapLight,
+  GLTFResource,
   Logger,
   SystemInfo,
   Vector3,
@@ -31,7 +32,7 @@ lightNode.transform.lookAt(new Vector3(0, 0, 1));
 lightNode.transform.rotate(new Vector3(0, 90, 0));
 
 engine.resourceManager
-  .load("https://gw.alipayobjects.com/os/basement_prod/aa318303-d7c9-4cb8-8c5a-9cf3855fd1e6.gltf")
+  .load<GLTFResource>("https://gw.alipayobjects.com/os/basement_prod/aa318303-d7c9-4cb8-8c5a-9cf3855fd1e6.gltf")
   .then((asset) => {
     const { animations, defaultSceneRoot } = asset;
     rootEntity.addChild(defaultSceneRoot);

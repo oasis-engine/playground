@@ -2,10 +2,11 @@ import { OrbitControl } from "@oasis-engine/controls";
 import {
   AssetType,
   Camera,
+  Color,
   ParticleRenderer,
+  ParticleRendererBlendMode,
   SystemInfo,
   Texture2D,
-  ParticleRendererBlendMode,
   Vector3,
   WebGLEngine
 } from "oasis-engine";
@@ -24,7 +25,7 @@ cameraEntity.transform.position = new Vector3(0, 0, 50);
 cameraEntity.addComponent(Camera);
 const controls = cameraEntity.addComponent(OrbitControl);
 controls.autoRotate = true;
-controls.autoRotateSpeed = 10;
+controls.autoRotateSpeed = Math.PI / 5;
 
 engine.run();
 
@@ -132,7 +133,7 @@ engine.resourceManager
     particles.rotateVelocityRandomness = 1;
     particles.size = 1;
     particles.sizeRandomness = 1;
-    particles.color = new Vector3(0.5, 0.5, 0.5);
+    particles.color = new Color(0.5, 0.5, 0.5);
     particles.colorRandomness = 1;
     particles.isFadeIn = true;
     particles.isFadeOut = true;

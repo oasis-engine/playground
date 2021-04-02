@@ -6,12 +6,17 @@
   { "label": "帧拾取", "src": "framebuffer-picker" },
   { "label": "环境反射探针", "src": "probe-reflection" },
   { "label": "视频纹理", "src": "video-texture" },
-  { "label": "自定义几何体", "src": "buffer-geometry" },
+  { "label": "基本网格", "src": "primitive-mesh" },
+  { "label": "模型网格", "src": "model-mesh" },
+  { "label": "缓冲网格", "src": "buffer-mesh" },
   { "label": "视锥体剔除", "src": "renderer-cull" },
   { "label": "粒子渲染器", "src": "particle-renderer" },
   { "label": "粒子渲染器精灵图", "src": "particle-renderer-spritesheet" },
   { "label": "相机渲染遮罩", "src": "camera-culling-mask" },
   { "label": "动画渐变过渡", "src": "animation-cross-fade" },
   { "label": "自定义材质-水", "src": "shader-water" },
-  { "label": "精灵渲染器", "src": "sprite-renderer" }
+  { "label": "精灵渲染器", "src": "sprite-renderer" },
+  { "label": "变换", "src": "transform-x" },
+  { "label": "PBR-基本", "src": "pbr-base" },
+  { "label": "纹理缩放偏移", "src": "material-tilingoffset" }
 ]

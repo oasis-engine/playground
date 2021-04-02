@@ -7,7 +7,8 @@ import {
   Color,
   DirectLight,
   EnvironmentMapLight,
-  request,
+  GLTFResource,
+  PBRMaterial,
   SkyBox,
   SystemInfo,
   Texture2D,
@@ -55,8 +56,8 @@ cameraNode.addComponent(OrbitControl);
 
 Promise.all([
   engine.resourceManager
-    .load("https://gw.alipayobjects.com/os/bmw-prod/83219f61-7d20-4704-890a-60eb92aa6159.gltf")
-    .then((gltf: any) => {
+    .load<GLTFResource>("https://gw.alipayobjects.com/os/bmw-prod/83219f61-7d20-4704-890a-60eb92aa6159.gltf")
+    .then((gltf) => {
       rootEntity.addChild(gltf.defaultSceneRoot);
       const material = gltf.materials[0];
       const video = document.getElementById("video") as HTMLVideoElement;
@@ -68,7 +69,7 @@ Promise.all([
       }
       setImage();
 
-      material.baseColorTexture = texture;
+      (<PBRMaterial>material).baseTexture = texture;
     }),
   engine.resourceManager
     .load<TextureCubeMap>({

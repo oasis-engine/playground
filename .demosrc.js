@@ -3,7 +3,7 @@ const pkg = require("./package.json");
 module.exports = {
   output: {
     dir: "dist", // 配置构建部署时输出的目录，默认dist目录
-    publicUrl: `/0.2/playground/` // 配置构建输出的资源根目录，默认是'/'
+    publicUrl: `/0.3/playground/` // 配置构建输出的资源根目录，默认是'/'
   },
   name: "Oasis Playground",
   version: `v${pkg.version}`,
@@ -21,9 +21,9 @@ module.exports = {
   globalPackages: {
     js: [
       "https://cdn.jsdelivr.net/npm/dat.gui@0.7.7/build/dat.gui.min.js",
-      "https://gw.alipayobjects.com/os/lib/oasis-engine/0.2.1/dist/browser.min.js",
-      "https://gw.alipayobjects.com/os/lib/oasis-engine/controls/0.2.1/dist/browser.js",
-      "https://gw.alipayobjects.com/os/lib/oasis-engine/framebuffer-picker/0.2.1/dist/browser.min.js"
+      "https://gw.alipayobjects.com/os/lib/oasis-engine/0.3.0-beta.2/dist/browser.min.js",
+      "https://gw.alipayobjects.com/os/lib/oasis-engine/controls/0.3.0-beta.2/dist/browser.min.js",
+      "https://gw.alipayobjects.com/os/lib/oasis-engine/framebuffer-picker/0.3.0-beta.2/dist/browser.min.js"
       // "http://localhost:5000/packages/oasis-engine/dist/browser.min.js",
       // "http://localhost:5000/packages/controls/dist/browser.min.js",
       // "http://localhost:5000/packages/framebuffer-picker/dist/browser.min.js"
