@@ -52,15 +52,16 @@ function init(): void {
       renderer.mesh = mesh;
       renderer.setMaterial(material);
 
+      // Add animation script
       const animationScript = rootEntity.addComponent(AnimateScript);
-
-      // Run engine
-      engine.run();
 
       // Add data GUI
       const guiData = addDataGUI(material, animationScript);
       animationScript.guiData = guiData;
       animationScript.material = material;
+
+      // Run engine
+      engine.run();
     });
 }
 
