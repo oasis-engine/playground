@@ -1,27 +1,17 @@
 import { OrbitControl } from "@oasis-engine/controls";
-import {
-  AssetType,
-  Camera,
-  Entity,
-  Sprite,
-  SpriteRenderer,
-  SystemInfo,
-  Texture2D,
-  Vector3,
-  WebGLEngine
-} from "oasis-engine";
+import { AssetType, Camera, Entity, Sprite, SpriteRenderer, SystemInfo, Texture2D, WebGLEngine } from "oasis-engine";
 
-// Create engine object
+// Create engine object.
 const engine = new WebGLEngine("o3-demo");
 engine.canvas.width = window.innerWidth * SystemInfo.devicePixelRatio;
 engine.canvas.height = window.innerHeight * SystemInfo.devicePixelRatio;
 
-const scene = engine.sceneManager.activeScene;
-const rootEntity = scene.createRootEntity();
+// Create root entity.
+const rootEntity = engine.sceneManager.activeScene.createRootEntity();
 
-// Create camera
+// Create camera.
 const cameraEntity = rootEntity.createChild("Camera");
-cameraEntity.transform.position = new Vector3(0, 0, 50);
+cameraEntity.transform.setPosition(0, 0, 50);
 cameraEntity.addComponent(Camera);
 cameraEntity.addComponent(OrbitControl);
 
@@ -31,27 +21,30 @@ engine.resourceManager
     type: AssetType.Texture2D
   })
   .then((texture) => {
-    // Display normal
-    const spriteEntity = rootEntity.createChild("spriteFlip");
-    spriteEntity.transform.setPosition(-15, 0, 0);
+    // Create origin sprite entity.
+    const spriteEntity = new Entity(engine, "spriteFlip");
     const spriteRenderer = spriteEntity.addComponent(SpriteRenderer);
     spriteRenderer.sprite = new Sprite(engine, texture);
 
-    // Display flip x
-    showFlipEntity(spriteEntity, -5, true, false);
-    // Display flip y
-    showFlipEntity(spriteEntity, 5, false, true);
-    // Display flip x and y
-    showFlipEntity(spriteEntity, 15, true, true);
+    // Display mormal.
+    addFlipEntity(spriteEntity, -15, false, false);
+    // Display flip x.
+    addFlipEntity(spriteEntity.clone(), -5, true, false);
+    // Display flip y.
+    addFlipEntity(spriteEntity.clone(), 5, false, true);
+    // Display flip x and y.
+    addFlipEntity(spriteEntity.clone(), 15, true, true);
   });
 
 engine.run();
 
-function showFlipEntity(entity: Entity, posX: number, flipX: boolean, flipY: boolean): void {
-  const flipEntity = entity.clone();
-  rootEntity.addChild(flipEntity);
-  flipEntity.transform.setPosition(posX, 0, 0);
-  const flipRenderer = flipEntity.getComponent(SpriteRenderer);
+/**
+ * Add flip entity.
+ */
+function addFlipEntity(entity: Entity, posX: number, flipX: boolean, flipY: boolean): void {
+  rootEntity.addChild(entity);
+  entity.transform.setPosition(posX, 0, 0);
+  const flipRenderer = entity.getComponent(SpriteRenderer);
   flipRenderer.flipX = flipX;
   flipRenderer.flipY = flipY;
 }
