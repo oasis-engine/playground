@@ -21,9 +21,10 @@ module.exports = {
   globalPackages: {
     js: [
       "https://cdn.jsdelivr.net/npm/dat.gui@0.7.7/build/dat.gui.min.js",
-      "https://gw.alipayobjects.com/os/lib/oasis-engine/0.3.0-beta.2/dist/browser.min.js",
-      "https://gw.alipayobjects.com/os/lib/oasis-engine/controls/0.3.0-beta.2/dist/browser.min.js",
-      "https://gw.alipayobjects.com/os/lib/oasis-engine/framebuffer-picker/0.3.0-beta.2/dist/browser.min.js"
+      "https://gw.alipayobjects.com/os/lib/oasis-engine/0.3.0/dist/browser.min.js",
+      "https://gw.alipayobjects.com/os/lib/oasis-engine/controls/0.3.0/dist/browser.min.js",
+      "https://gw.alipayobjects.com/os/lib/oasis-engine/framebuffer-picker/0.3.0/dist/browser.min.js",
+      "https://gw.alipayobjects.com/os/lib/oasis-engine/engine-spine/0.1.3/dist/browser.js",
       // "http://localhost:5000/packages/oasis-engine/dist/browser.min.js",
       // "http://localhost:5000/packages/controls/dist/browser.min.js",
       // "http://localhost:5000/packages/framebuffer-picker/dist/browser.min.js"

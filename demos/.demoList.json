@@ -21,5 +21,6 @@
   { "label": "纹理缩放偏移", "src": "material-tilingoffset" },
   { "label": "精灵翻转", "src": "sprite-flip" },
   { "label": "精灵自定义材质", "src": "sprite-material" },
-  { "label": "精灵颜色", "src": "sprite-color" }
+  { "label": "精灵颜色", "src": "sprite-color" },
+  { "label": "Spine 动画", "src": "spine-animation" }
 ]
