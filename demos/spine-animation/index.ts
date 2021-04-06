@@ -12,7 +12,6 @@ const rootEntity = scene.createRootEntity();
 // camera
 const cameraEntity = rootEntity.createChild("camera_node");
 const camera = cameraEntity.addComponent(Camera);
-camera.farClipPlane = 1000;
 cameraEntity.transform.position = new Vector3(0, 0, 70);
 
 engine.resourceManager
