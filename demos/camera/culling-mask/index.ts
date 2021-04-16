@@ -1,6 +1,8 @@
-import * as o3 from "oasis-engine";
 import * as dat from "dat.gui";
+import * as o3 from "oasis-engine";
+import { DirectLight, Logger } from "oasis-engine";
 
+Logger.enable();
 const engine = new o3.WebGLEngine("o3-demo");
 engine.canvas.resizeByClientSize();
 const rootEntity = engine.sceneManager.activeScene.createRootEntity();
@@ -13,9 +15,9 @@ pos.setValue(10, 10, 10);
 cameraEntity.transform.position = pos;
 cameraEntity.transform.lookAt(new o3.Vector3(0, 0, 0));
 
-// init light
-const light = rootEntity.addComponent(o3.AmbientLight);
-light.intensity = 1.2;
+const lightNode = rootEntity.createChild("Light");
+lightNode.transform.setRotation(-30, 0, 0);
+lightNode.addComponent(DirectLight);
 
 // init cube
 const cubeEntity = rootEntity.createChild("cube");

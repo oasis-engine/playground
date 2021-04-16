@@ -4,27 +4,20 @@ import {
   AssetType,
   Camera,
   Color,
-  EnvironmentMapLight,
   GLTFResource,
   LoadItem,
-  Logger,
   SystemInfo,
   TextureCubeMap,
   Vector3,
-  WebGLEngine
+  WebGLEngine,
+  DiffuseMode
 } from "oasis-engine";
-
-Logger.enable();
 
 const engine = new WebGLEngine("o3-demo");
 engine.canvas.width = window.innerWidth * SystemInfo.devicePixelRatio;
 engine.canvas.height = window.innerHeight * SystemInfo.devicePixelRatio;
 const scene = engine.sceneManager.activeScene;
 const rootNode = scene.createRootEntity();
-//-- create engine object
-
-let envLightNode = rootNode.createChild("env_light");
-let envLight = envLightNode.addComponent(EnvironmentMapLight);
 
 //-- create camera
 let cameraNode = rootNode.createChild("camera_node");
@@ -70,8 +63,10 @@ engine.resourceManager.load(resources).then((res) => {
     }
   }
 
-  envLight.diffuseTexture = <TextureCubeMap>res[1];
-  envLight.specularTexture = <TextureCubeMap>res[2];
+  const ambientLight = scene.ambientLight;
+  ambientLight.diffuseMode = DiffuseMode.Texture;
+  ambientLight.diffuseTexture = <TextureCubeMap>res[1];
+  ambientLight.specularTexture = <TextureCubeMap>res[2];
 
   // framebuffer picker
   let lastMaterial;

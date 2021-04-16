@@ -1,12 +1,11 @@
 import { OrbitControl } from "@oasis-engine/controls";
 import * as dat from "dat.gui";
 import {
-  AmbientLight,
   AssetType,
   Camera,
   Color,
+  DiffuseMode,
   DirectLight,
-  EnvironmentMapLight,
   GLTFResource,
   SkyBox,
   SystemInfo,
@@ -21,6 +20,7 @@ engine.canvas.width = window.innerWidth * SystemInfo.devicePixelRatio;
 engine.canvas.height = window.innerHeight * SystemInfo.devicePixelRatio;
 
 let scene = engine.sceneManager.activeScene;
+const ambientLight = scene.ambientLight;
 const rootEntity = scene.createRootEntity();
 
 const color2glColor = (color) => new Color(color[0] / 255, color[1] / 255, color[2] / 255);
@@ -28,12 +28,9 @@ const glColor2Color = (color) => new Color(color[0] * 255, color[1] * 255, color
 const gui = new dat.GUI();
 gui.domElement.style = "position:absolute;top:0px;left:50vw";
 
-let envLightNode = rootEntity.createChild("env_light");
-let envLight = envLightNode.addComponent(EnvironmentMapLight);
 let envFolder = gui.addFolder("EnvironmentMapLight");
-envFolder.add(envLight, "enabled");
-envFolder.add(envLight, "specularIntensity", 0, 1);
-envFolder.add(envLight, "diffuseIntensity", 0, 1);
+envFolder.add(ambientLight, "specularIntensity", 0, 1);
+envFolder.add(ambientLight, "diffuseIntensity", 0, 1);
 
 let directLightColor = { color: [255, 255, 255] };
 let directLightNode = rootEntity.createChild("dir_light");
@@ -43,9 +40,6 @@ let dirFolder = gui.addFolder("DirectionalLight1");
 dirFolder.add(directLight, "enabled");
 dirFolder.addColor(directLightColor, "color").onChange((v) => (directLight.color = color2glColor(v)));
 dirFolder.add(directLight, "intensity", 0, 1);
-
-const ambient = rootEntity.addComponent(AmbientLight);
-ambient.color = new Color(0.2, 0.2, 0.2, 1);
 
 //-- create camera
 let cameraNode = rootEntity.createChild("camera_node");
@@ -73,7 +67,8 @@ Promise.all([
       type: AssetType.TextureCube
     })
     .then((cubeMap) => {
-      envLight.diffuseTexture = cubeMap;
+      ambientLight.diffuseMode = DiffuseMode.Texture;
+      ambientLight.diffuseTexture = cubeMap;
     }),
   engine.resourceManager
     .load<TextureCubeMap>({
@@ -88,7 +83,7 @@ Promise.all([
       type: AssetType.TextureCube
     })
     .then((cubeMap) => {
-      envLight.specularTexture = cubeMap;
+      ambientLight.specularTexture = cubeMap;
       rootEntity.addComponent(SkyBox).skyBoxMap = cubeMap;
     })
 ]).then(() => {

@@ -23,8 +23,6 @@ const rootEntity = scene.createRootEntity();
 const lightEntity = rootEntity.createChild("light");
 lightEntity.transform.rotate(0, 180, 0);
 
-const ambient = lightEntity.addComponent(AmbientLight);
-ambient.color = new Color(0.2, 0.2, 0.2, 1);
 const light = lightEntity.addComponent(DirectLight);
 light.color = new Color(0.8, 0.8, 0.8, 1.0);
 

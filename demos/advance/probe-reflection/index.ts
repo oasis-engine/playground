@@ -1,14 +1,13 @@
 import { OrbitControl } from "@oasis-engine/controls";
 import * as dat from "dat.gui";
 import {
-  AmbientLight,
   AssetType,
   BlinnPhongMaterial,
   Camera,
   Color,
   CubeProbe,
+  DiffuseMode,
   DirectLight,
-  EnvironmentMapLight,
   GLTFResource,
   Layer,
   MeshRenderer,
@@ -32,14 +31,8 @@ const rootEntity = scene.createRootEntity();
 const gui = new dat.GUI();
 gui.domElement.style = "position:absolute;top:0px;left:50vw";
 
-const envLightNode = rootEntity.createChild("env_light");
-const envLight = envLightNode.addComponent(EnvironmentMapLight);
-
 const directLightNode = rootEntity.createChild("dir_light");
 const directLight = directLightNode.addComponent(DirectLight);
-
-const ambient = rootEntity.addComponent(AmbientLight);
-ambient.color = new Color(0.2, 0.2, 0.2);
 
 //-- create camera
 const cameraEntity = rootEntity.createChild("camera_node");
@@ -48,6 +41,7 @@ cameraEntity.addComponent(Camera);
 cameraEntity.addComponent(OrbitControl);
 
 const skybox = rootEntity.addComponent(SkyBox);
+const ambientLight = scene.ambientLight;
 
 async function loadModel() {
   return Promise.all([
@@ -70,7 +64,8 @@ async function loadModel() {
         type: AssetType.TextureCube
       })
       .then((cubeMap) => {
-        envLight.diffuseTexture = cubeMap;
+        ambientLight.diffuseMode = DiffuseMode.Texture;
+        ambientLight.diffuseTexture = cubeMap;
       }),
     engine.resourceManager
       .load<TextureCubeMap>({
@@ -85,7 +80,7 @@ async function loadModel() {
         type: AssetType.TextureCube
       })
       .then((cubeMap) => {
-        envLight.specularTexture = cubeMap;
+        ambientLight.specularTexture = cubeMap;
         skybox.skyBoxMap = cubeMap;
       })
   ]).then(() => {});
@@ -140,7 +135,7 @@ function reflectionDemo() {
   rootEntity.layer = Layer.Layer30;
 
   probe.onTextureChange = (texture) => {
-    envLight.specularTexture = texture;
+    ambientLight.specularTexture = texture;
   };
   gui
     .add(state, "enableAnimate")

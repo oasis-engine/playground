@@ -1,15 +1,5 @@
 import { OrbitControl } from "@oasis-engine/controls";
-import {
-  Animation,
-  Camera,
-  DirectLight,
-  EnvironmentMapLight,
-  GLTFResource,
-  Logger,
-  SystemInfo,
-  Vector3,
-  WebGLEngine
-} from "oasis-engine";
+import { Animation, Camera, DirectLight, GLTFResource, Logger, SystemInfo, Vector3, WebGLEngine } from "oasis-engine";
 
 Logger.enable();
 
@@ -26,8 +16,7 @@ cameraEntity.addComponent(Camera);
 cameraEntity.addComponent(OrbitControl).target = new Vector3(0, 1, 0);
 
 const lightNode = rootEntity.createChild("light_node");
-rootEntity.addComponent(EnvironmentMapLight);
-lightNode.addComponent(DirectLight).intensity = 0.6;
+lightNode.addComponent(DirectLight).intensity = 0.8;
 lightNode.transform.lookAt(new Vector3(0, 0, 1));
 lightNode.transform.rotate(new Vector3(0, 90, 0));
 

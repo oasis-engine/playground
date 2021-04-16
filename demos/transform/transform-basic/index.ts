@@ -1,15 +1,5 @@
 import { OrbitControl } from "@oasis-engine/controls";
-import {
-  AmbientLight,
-  Camera,
-  Color,
-  DirectLight,
-  Entity,
-  GLTFResource,
-  Script,
-  SystemInfo,
-  WebGLEngine
-} from "oasis-engine";
+import { Camera, Color, DirectLight, Entity, GLTFResource, Script, SystemInfo, WebGLEngine } from "oasis-engine";
 
 init();
 
@@ -37,10 +27,8 @@ function init(): void {
 
       // Create light.
       const lightEntity = rootEntity.createChild("LightEntity");
-      const ambient = lightEntity.addComponent(AmbientLight);
       const directLight = lightEntity.addComponent(DirectLight);
-      ambient.color = new Color(0.5, 0.5, 0.5);
-      directLight.color = new Color(0.5, 0.5, 0.5);
+      directLight.color = new Color(0.8, 0.8, 0.8);
 
       // Create three duck modles, set rotation and position.
       const duck0 = gltf.defaultSceneRoot;
