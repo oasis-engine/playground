@@ -1,5 +1,4 @@
-import demoList from "./demos/.demoList.json";
-
+const demoList = require("./demos/.demoList.json")
 const path = require("path");
 const fs = require("fs-extra");
 const OUT_PATH = "mpa";
