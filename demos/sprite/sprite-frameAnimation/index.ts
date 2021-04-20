@@ -27,7 +27,7 @@ cameraEntity.addComponent(OrbitControl);
 // Load Texture2D
 engine.resourceManager
   .load({
-    url: "https://gw.alipayobjects.com/mdn/rms_7c464e/afts/img/A*oth4QoD2ub8AAAAAAAAAAAAAARQnAQ",
+    url: "https://gw.alipayobjects.com/mdn/rms_7c464e/afts/img/A*zcZVTKry5R4AAAAAAAAAAAAAARQnAQ",
     type: AssetType.Texture2D
   })
   .then((texture: Texture2D): void => {
@@ -49,7 +49,7 @@ class FrameSpriteScrip extends Script {
   // Reciprocal Of SliceHeight
   private _reciprocalOfSliceHeight: number;
   // Total frames
-  private _totalFrames: number = 45;
+  private _totalFrames: number = 16;
   // Frame interval time
   private _frameInterval: number = 100;
   // Now index of frames
@@ -59,8 +59,8 @@ class FrameSpriteScrip extends Script {
 
   onAwake(): void {
     this._renderer = this._entity.getComponent(SpriteRenderer);
-    const row = 22,
-      line = 3,
+    const row = 4,
+      line = 4,
       reciprocalOfSliceWidth = 1 / row,
       reciprocalOfSliceHeight = 1 / line;
     const regions: Vector2[] = [];
@@ -94,6 +94,7 @@ class FrameSpriteScrip extends Script {
   // Index of frames
   private _setFrameIndex(frameIndex: number) {
     if (this._frameIndex != frameIndex) {
+      console.log(frameIndex);
       this._frameIndex = frameIndex;
       const frameInfo = this._regions[frameIndex];
       this._renderer.sprite.region = this._reuseRect.setValue(
