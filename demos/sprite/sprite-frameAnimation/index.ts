@@ -34,81 +34,70 @@ cameraEntity.transform.setPosition(0, 0, 50);
 cameraEntity.addComponent(Camera);
 cameraEntity.addComponent(OrbitControl);
 
-function parseFrameAnimation(frameInfo, sizeInfo): Array < any > {
-  return Object.values(frameInfo).map(function (frameInfo : any) {
-      frameInfo.frame.x /= sizeInfo.w;
-      frameInfo.frame.y /= sizeInfo.h;
-      frameInfo.frame.w /= sizeInfo.w;
-      frameInfo.frame.h /= sizeInfo.h;
-      return frameInfo;
-  })
-}
+// Load Texture2D
+engine.resourceManager.load({url: 'https://gw.alipayobjects.com/mdn/rms_7c464e/afts/img/A*oth4QoD2ub8AAAAAAAAAAAAAARQnAQ', type: AssetType.Texture2D}).then((texture : Texture2D) : void => { // add spriteRenderer
+    spriteEntity.addComponent(SpriteRenderer).sprite = new Sprite(engine, texture);
+    spriteEntity.addComponent(FrameSpriteScrip);
+});
+
+engine.run();
 
 // Script for sprite
-class FrameSpriteScrip extends Script {
-    // FrameAniamtion renderer
+class FrameSpriteScrip extends Script { // FrameAniamtion renderer
     private _renderer : SpriteRenderer;
-    // total frames
-    private _totalFrames = 0;
-    // frame interval time
-    private _frameInterval;
-    // group of animations
-    private _frameArr : Array < any >;
-    // play this group of animations at 100ms intervals
-    play(frameArr : any[], interval = 100) {
-        if (frameArr && frameArr.length > 0) {
-            this._renderer = this._entity.getComponent(SpriteRenderer);
-            this._frameArr = frameArr;
-            this._totalFrames = frameArr.length;
-            this._frameInterval = interval;
-            this.frameIndex = 0;
-        } else {
-            this._totalFrames = 0;
+    // Group of region
+    private _regionArr : Array < Vector2 >;
+    // Reciprocal Of SliceWidth
+    private _reciprocalOfSliceWidth : number;
+    // Reciprocal Of SliceHeight
+    private _reciprocalOfSliceHeight : number;
+    // Total frames
+    private _totalFrames : number;
+    // Frame interval time
+    private _frameInterval : number;
+    onAwake(): void {
+        this._renderer = this._entity.getComponent(SpriteRenderer);
+        const row: number = 22,
+            line: number = 3,
+            reciprocalOfSliceWidth: number = 1 / row,
+            reciprocalOfSliceHeight: number = 1 / line;
+        const regionArr: Array < Vector2 > = [];
+        for (let j = 0; j < line; j++) {
+            let tempY = j * reciprocalOfSliceHeight;
+            for (let i = 0; i < row; i++) {
+                regionArr.push(new Vector2(i * reciprocalOfSliceWidth, tempY));
+            }
         }
+        this._regionArr = regionArr;
+        this._reciprocalOfSliceWidth = reciprocalOfSliceWidth;
+        this._reciprocalOfSliceHeight = reciprocalOfSliceHeight;
+        this._totalFrames = 45;
+        this._frameInterval = 100;
+        this.frameIndex = 0;
     }
 
-    private _cumulativeTime = 0;
-    onUpdate(deltaTime : number) {
+    private _cumulativeTime : number = 0;
+    onUpdate(deltaTime : number): void {
         if (this._totalFrames<= 0) {
             return;
         }
-        const {_frameInterval: _interval} = this;
+        const {_frameInterval} = this;
         this._cumulativeTime += deltaTime;
-        if (this._cumulativeTime >= _interval) { 
-            // need update frameIndex
-            var addTimes = Math.floor(this._cumulativeTime / _interval);
-            this._cumulativeTime -= addTimes * _interval;
+        if (this._cumulativeTime >= _frameInterval) { // need update frameIndex
+            var addTimes = Math.floor(this._cumulativeTime / _frameInterval);
+            this._cumulativeTime -= addTimes * _frameInterval;
             this.frameIndex = (this._frameIndex + addTimes) % this._totalFrames;
-        } else { 
-            // no change
         }
     }
 
+    private reuseRect : Rect = new Rect(0, 0, 0, 0);
     private _frameIndex : number;
-    private reuseRect = new Rect(0, 0, 0, 0);
-    private reuseVec2 = new Vector2(0, 0);
     // update sprite‘s region and pivot
     private set frameIndex(frameIndex : number) {
         if (this._frameIndex != frameIndex) {
             this._frameIndex = frameIndex;
-            const frameInfo = this._frameArr[frameIndex];
-            const {sprite} = this._renderer;
-            sprite.region = this.reuseRect.setValue(frameInfo.frame.x, frameInfo.frame.y, frameInfo.frame.w, frameInfo.frame.h);
-            sprite.pivot = this.reuseVec2.setValue(frameInfo.pivot.x, frameInfo.pivot.y);
+            const frameInfo = this._regionArr[frameIndex];
+            this._renderer.sprite.region = this.reuseRect.setValue(frameInfo.x, frameInfo.y, this._reciprocalOfSliceWidth, this._reciprocalOfSliceHeight);
         }
     }
 }
-
-// load animations
-engine.resourceManager.load([{
-        url: "https://gw.alipayobjects.com/mdn/rms_7c464e/afts/img/A*5l7FRagIZO0AAAAAAAAAAAAAARQnAQ",
-        type: AssetType.Texture2D
-    }, "https://gw.alipayobjects.com/os/bmw-prod/c5072f0c-85fe-468f-84a3-3d7d68289413.json"]).then((res) => { // Create sprite renderer
-    const spriteRenderer = spriteEntity.addComponent(SpriteRenderer);
-    const sprite: Sprite = new Sprite(engine, res[0]);
-    spriteRenderer.sprite = sprite;
-    // add and play FrameAnimation
-    spriteEntity.addComponent(FrameSpriteScrip).play(parseFrameAnimation(res[1].frames, res[1].meta.size));
-});
-
-engine.run();
