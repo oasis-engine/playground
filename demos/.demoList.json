@@ -16,7 +16,8 @@
       { "src": "sprite-renderer", "label": "精灵渲染器" },
       { "src": "sprite-flip", "label": "精灵翻转" },
       { "src": "sprite-material", "label": "精灵自定义材质" },
-      { "src": "sprite-color", "label": "精灵颜色" }
+      { "src": "sprite-color", "label": "精灵颜色" },
+      { "src": "sprite-frameAnimation", "label": "帧动画" }
     ]
   },
   {
