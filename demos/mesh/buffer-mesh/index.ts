@@ -1,5 +1,4 @@
 import {
-  AmbientLight,
   BlinnPhongMaterial,
   Buffer,
   BufferBindFlag,
