@@ -68,7 +68,7 @@ class FrameSpriteScript extends Script {
       }
     }
 
-    this._sprite = this._entity.getComponent(SpriteRenderer).sprite;
+    this._sprite = this.entity.getComponent(SpriteRenderer).sprite;
     this._regions = regions;
     this._reciprocalSliceWidth = reciprocalSliceWidth;
     this._reciprocalSliceHeight = reciprocalSliceHeight;
