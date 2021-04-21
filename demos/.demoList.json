@@ -11,7 +11,6 @@
   { "label": "粒子渲染器", "src": "particle-renderer" },
   { "label": "粒子渲染器精灵图", "src": "particle-renderer-spritesheet" },
   { "label": "相机渲染遮罩", "src": "camera-culling-mask" },
-  { "label": "动画渐变过渡", "src": "animation-cross-fade" },
   { "label": "自定义材质-水", "src": "shader-water" },
   { "label": "精灵渲染器", "src": "sprite-renderer" },
   { "label": "骨骼动画过渡", "src": "skeleton-animation-crossfade" },
