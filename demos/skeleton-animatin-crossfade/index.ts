@@ -37,9 +37,10 @@ lightNode.transform.lookAt(new Vector3(0, 0, 1));
 lightNode.transform.rotate(new Vector3(0, 90, 0));
 
 engine.resourceManager
-  .load("https://gw.alipayobjects.com/os/basement_prod/aa318303-d7c9-4cb8-8c5a-9cf3855fd1e6.gltf")
+  .load("https://gw.alipayobjects.com/os/bmw-prod/5e3c1e4e-496e-45f8-8e05-f89f2bd5e4a4.glb")
   .then((asset) => {
     const { animations, defaultSceneRoot } = asset;
+
     const animator = defaultSceneRoot.addComponent(Animator);
     const animatorController = new AnimatorController();
     const layer = new AnimatorControllerLayer("layer");
@@ -47,6 +48,10 @@ engine.resourceManager
     animatorController.addLayer(layer);
     animator.animatorController = animatorController;
     layer.stateMachine = animatorStateMachine;
+    setTimeout(() => {
+      console.log("crossFade");
+      animator.crossFade("run", 0, 0.5, 0.1);
+    }, 3000);
     if (animations) {
       animations.forEach((clip: AnimationClip) => {
         const animatorState = new AnimatorState(clip.name);
@@ -54,8 +59,8 @@ engine.resourceManager
         animatorStateMachine.addState(clip.name);
       });
     }
-    rootEntity.addChild(defaultSceneRoot);
     animator.play();
+    rootEntity.addChild(defaultSceneRoot);
   });
 
 engine.run();

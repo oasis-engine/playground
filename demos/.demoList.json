@@ -13,5 +13,10 @@
   { "label": "相机渲染遮罩", "src": "camera-culling-mask" },
   { "label": "动画渐变过渡", "src": "animation-cross-fade" },
   { "label": "自定义材质-水", "src": "shader-water" },
-  { "label": "精灵渲染器", "src": "sprite-renderer" }
+  { "label": "精灵渲染器", "src": "sprite-renderer" },
+  { "label": "骨骼动画过渡", "src": "skeleton-animatin-crossfade" },
+  { "label": "骨骼动画叠加", "src": "skeleton-animatin-additive" },
+  { "label": "skeleton-animation-playsta", "src": "skeleton-animation-playstate" },
+  { "label": "skeleton-animation-playsta", "src": "skeleton-animation-playstate" },
+  { "label": "skeleton-animation-playstate", "src": "skeleton-animation-playstate" }
 ]
