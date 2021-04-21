@@ -15,9 +15,9 @@
     "demos": [
       { "src": "sprite-renderer", "label": "精灵渲染器" },
       { "src": "sprite-flip", "label": "精灵翻转" },
-      { "src": "sprite-material", "label": "精灵自定义材质" },
       { "src": "sprite-color", "label": "精灵颜色" },
       { "src": "sprite-sheetAnimation", "label": "精灵帧动画" },
+      { "src": "sprite-material-blur", "label": "精灵自定义材质-高斯模糊" },
       { "src": "sprite-material-dissolve", "label": "精灵自定义材质-溶解" }
     ]
   },
