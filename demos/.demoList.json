@@ -14,7 +14,7 @@
   { "label": "动画渐变过渡", "src": "animation-cross-fade" },
   { "label": "自定义材质-水", "src": "shader-water" },
   { "label": "精灵渲染器", "src": "sprite-renderer" },
-  { "label": "骨骼动画过渡", "src": "skeleton-animatin-crossfade" },
-  { "label": "骨骼动画叠加", "src": "skeleton-animatin-additive" },
+  { "label": "骨骼动画过渡", "src": "skeleton-animation-crossfade" },
+  { "label": "骨骼动画叠加", "src": "skeleton-animation-additive" },
   { "label": "骨骼动画片段播放", "src": "skeleton-animation-playstate" }
 ]
