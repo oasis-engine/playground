@@ -15,7 +15,7 @@ function init(): void {
 
   // Create camera.
   const cameraEntity = rootEntity.createChild("Camera");
-  cameraEntity.transform.setPosition(0, 0, 5);
+  cameraEntity.transform.setPosition(0, 0, 15);
   cameraEntity.addComponent(Camera);
   cameraEntity.addComponent(OrbitControl);
 
