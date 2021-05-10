@@ -13,7 +13,7 @@ import {
   MeshRenderer,
   PrimitiveMesh,
   Script,
-  SkyBox,
+  SkyBoxMaterial,
   SystemInfo,
   TextureCubeMap,
   Vector3,
@@ -32,15 +32,13 @@ const gui = new dat.GUI();
 gui.domElement.style = "position:absolute;top:0px;left:50vw";
 
 const directLightNode = rootEntity.createChild("dir_light");
-const directLight = directLightNode.addComponent(DirectLight);
+directLightNode.addComponent(DirectLight);
 
 //-- create camera
 const cameraEntity = rootEntity.createChild("camera_node");
 cameraEntity.transform.position = new Vector3(0, 0, 5);
 cameraEntity.addComponent(Camera);
 cameraEntity.addComponent(OrbitControl);
-
-const skybox = rootEntity.addComponent(SkyBox);
 const ambientLight = scene.ambientLight;
 
 async function loadModel() {
@@ -81,7 +79,12 @@ async function loadModel() {
       })
       .then((cubeMap) => {
         ambientLight.specularTexture = cubeMap;
-        skybox.skyBoxMap = cubeMap;
+
+        const skyMaterial = new SkyBoxMaterial(engine);
+        skyMaterial.textureCubeMap = cubeMap;
+        const { sky } = scene.background;
+        sky.material = skyMaterial;
+        sky.mesh = PrimitiveMesh.createCuboid(engine, 1, 1, 1);
       })
   ]).then(() => {});
 }

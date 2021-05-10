@@ -6,12 +6,12 @@ import {
   MeshRenderer,
   PBRMaterial,
   PrimitiveMesh,
-  SkyBox,
   SystemInfo,
   TextureCubeMap,
   Vector3,
   WebGLEngine,
-  DiffuseMode
+  DiffuseMode,
+  SkyBoxMaterial
 } from "oasis-engine";
 
 /**
@@ -79,8 +79,11 @@ const control = cameraEntity.addComponent(OrbitControl);
 control.maxDistance = 20;
 control.minDistance = 2;
 
-// create skybox
-const skybox = rootEntity.addComponent(SkyBox);
+// create sky
+const sky = scene.background.sky;
+const skyMaterial = new SkyBoxMaterial(engine);
+sky.material = skyMaterial;
+sky.mesh = PrimitiveMesh.createCuboid(engine, 1, 1, 1);
 
 // load env texture
 engine.resourceManager
@@ -124,16 +127,17 @@ engine.resourceManager
     ambientLight.diffuseMode = DiffuseMode.Texture;
     ambientLight.diffuseTexture = cubeMaps[0];
     ambientLight.specularTexture = cubeMaps[1];
-    skybox.skyBoxMap = cubeMaps[1];
+
+    skyMaterial.textureCubeMap = cubeMaps[1];
     gui.add(guiDebug, "env", ["forrest", "road"]).onChange((v) => {
       switch (v) {
         case "forrest":
           ambientLight.specularTexture = cubeMaps[1];
-          skybox.skyBoxMap = cubeMaps[1];
+          skyMaterial.textureCubeMap = cubeMaps[1];
           break;
         case "road":
           ambientLight.specularTexture = cubeMaps[2];
-          skybox.skyBoxMap = cubeMaps[2];
+          skyMaterial.textureCubeMap = cubeMaps[2];
           break;
       }
     });

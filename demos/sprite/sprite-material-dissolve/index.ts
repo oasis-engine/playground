@@ -182,7 +182,7 @@ const spriteFragmentShader = `
   precision mediump float;
   precision mediump int;
 
-  uniform sampler2D u_texture;
+  uniform sampler2D u_spriteTexture;
   uniform sampler2D u_noiseTexture;
   uniform sampler2D u_rampTexture;
   uniform float u_threshold;
@@ -204,7 +204,7 @@ const spriteFragmentShader = `
 
     float degree = clamp(0.0, 1.0, diff / u_edgeLength);
     vec4 edgeColor = texture2D(u_rampTexture, vec2(degree, degree));
-    vec4 color = texture2D(u_texture, v_uv);
+    vec4 color = texture2D(u_spriteTexture, v_uv);
     vec4 finalColor = lerp(edgeColor, color, degree);
     gl_FragColor = vec4(finalColor.rgb, color.a) * v_color;
   }

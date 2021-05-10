@@ -7,7 +7,8 @@ import {
   DiffuseMode,
   DirectLight,
   GLTFResource,
-  SkyBox,
+  PrimitiveMesh,
+  SkyBoxMaterial,
   SystemInfo,
   TextureCubeMap,
   Vector3,
@@ -84,7 +85,12 @@ Promise.all([
     })
     .then((cubeMap) => {
       ambientLight.specularTexture = cubeMap;
-      rootEntity.addComponent(SkyBox).skyBoxMap = cubeMap;
+
+      const skyMaterial = new SkyBoxMaterial(engine);
+      skyMaterial.textureCubeMap = cubeMap;
+      const { sky } = scene.background;
+      sky.material = skyMaterial;
+      sky.mesh = PrimitiveMesh.createCuboid(engine, 1, 1, 1);
     })
 ]).then(() => {
   engine.run();
