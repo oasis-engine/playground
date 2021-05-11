@@ -2,6 +2,7 @@ import { OrbitControl } from "@oasis-engine/controls";
 import * as dat from "dat.gui";
 import {
   AssetType,
+  BackgroundMode,
   Camera,
   Color,
   DiffuseMode,
@@ -21,7 +22,7 @@ engine.canvas.width = window.innerWidth * SystemInfo.devicePixelRatio;
 engine.canvas.height = window.innerHeight * SystemInfo.devicePixelRatio;
 
 let scene = engine.sceneManager.activeScene;
-const ambientLight = scene.ambientLight;
+const { ambientLight, background } = scene;
 const rootEntity = scene.createRootEntity();
 
 const color2glColor = (color) => new Color(color[0] / 255, color[1] / 255, color[2] / 255);
@@ -42,11 +43,18 @@ dirFolder.add(directLight, "enabled");
 dirFolder.addColor(directLightColor, "color").onChange((v) => (directLight.color = color2glColor(v)));
 dirFolder.add(directLight, "intensity", 0, 1);
 
-//-- create camera
+//Create camera
 let cameraNode = rootEntity.createChild("camera_node");
 cameraNode.transform.position = new Vector3(0, 0, 5);
 cameraNode.addComponent(Camera);
 cameraNode.addComponent(OrbitControl);
+
+// Create sky
+const sky = background.sky;
+const skyMaterial = new SkyBoxMaterial(engine);
+background.mode = BackgroundMode.Sky;
+sky.material = skyMaterial;
+sky.mesh = PrimitiveMesh.createCuboid(engine, 1, 1, 1);
 
 Promise.all([
   engine.resourceManager
@@ -85,12 +93,7 @@ Promise.all([
     })
     .then((cubeMap) => {
       ambientLight.specularTexture = cubeMap;
-
-      const skyMaterial = new SkyBoxMaterial(engine);
       skyMaterial.textureCubeMap = cubeMap;
-      const { sky } = scene.background;
-      sky.material = skyMaterial;
-      sky.mesh = PrimitiveMesh.createCuboid(engine, 1, 1, 1);
     })
 ]).then(() => {
   engine.run();

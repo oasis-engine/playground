@@ -2,6 +2,7 @@ import { OrbitControl } from "@oasis-engine/controls";
 import * as dat from "dat.gui";
 import {
   AssetType,
+  BackgroundMode,
   BlinnPhongMaterial,
   Camera,
   Color,
@@ -20,13 +21,14 @@ import {
   WebGLEngine
 } from "oasis-engine";
 
-//-- create engine object
+// Create engine object
 const engine = new WebGLEngine("o3-demo");
 engine.canvas.width = window.innerWidth * SystemInfo.devicePixelRatio;
 engine.canvas.height = window.innerHeight * SystemInfo.devicePixelRatio;
 
 const scene = engine.sceneManager.activeScene;
 const rootEntity = scene.createRootEntity();
+const { ambientLight, background } = scene;
 
 const gui = new dat.GUI();
 gui.domElement.style = "position:absolute;top:0px;left:50vw";
@@ -34,12 +36,18 @@ gui.domElement.style = "position:absolute;top:0px;left:50vw";
 const directLightNode = rootEntity.createChild("dir_light");
 directLightNode.addComponent(DirectLight);
 
-//-- create camera
+// Create camera
 const cameraEntity = rootEntity.createChild("camera_node");
 cameraEntity.transform.position = new Vector3(0, 0, 5);
 cameraEntity.addComponent(Camera);
 cameraEntity.addComponent(OrbitControl);
-const ambientLight = scene.ambientLight;
+
+// Create sky
+const sky = background.sky;
+const skyMaterial = new SkyBoxMaterial(engine);
+background.mode = BackgroundMode.Sky;
+sky.material = skyMaterial;
+sky.mesh = PrimitiveMesh.createCuboid(engine, 1, 1, 1);
 
 async function loadModel() {
   return Promise.all([
@@ -79,12 +87,7 @@ async function loadModel() {
       })
       .then((cubeMap) => {
         ambientLight.specularTexture = cubeMap;
-
-        const skyMaterial = new SkyBoxMaterial(engine);
         skyMaterial.textureCubeMap = cubeMap;
-        const { sky } = scene.background;
-        sky.material = skyMaterial;
-        sky.mesh = PrimitiveMesh.createCuboid(engine, 1, 1, 1);
       })
   ]).then(() => {});
 }
