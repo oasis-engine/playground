@@ -18,31 +18,28 @@ import {
 } from "oasis-engine";
 
 //-- create engine object
-const engine = new WebGLEngine("o3-demo", { alpha: false });
+const engine = new WebGLEngine("o3-demo");
 engine.canvas.resizeByClientSize();
 
 const scene = engine.sceneManager.activeScene;
 const { ambientLight, background } = scene;
-// ambientLight.diffuseIntensity = 0;
-ambientLight.specularIntensity = 0;
 const rootEntity = scene.createRootEntity();
 
 const color2glColor = (color) => new Color(color[0] / 255, color[1] / 255, color[2] / 255);
 const gui = new dat.GUI();
 
 const envFolder = gui.addFolder("EnvironmentMapLight");
-envFolder.add(ambientLight, "specularIntensity", 0, 3, 0.1);
-envFolder.add(ambientLight, "diffuseIntensity", 0, 1, 0.1);
+envFolder.add(ambientLight, "specularIntensity", 0, 1);
+envFolder.add(ambientLight, "diffuseIntensity", 0, 1);
+
 const directLightColor = { color: [255, 255, 255] };
 const directLightNode = rootEntity.createChild("dir_light");
 const directLight = directLightNode.addComponent(DirectLight);
-directLightNode.transform.setRotation(0, 30, 0);
-
-// directLight.enabled = false;
+directLight.color = new Color(1, 1, 1);
 const dirFolder = gui.addFolder("DirectionalLight1");
 dirFolder.add(directLight, "enabled");
 dirFolder.addColor(directLightColor, "color").onChange((v) => (directLight.color = color2glColor(v)));
-dirFolder.add(directLight, "intensity", 0, 3, 0.1);
+dirFolder.add(directLight, "intensity", 0, 1);
 
 //Create camera
 const cameraNode = rootEntity.createChild("camera_node");
@@ -54,7 +51,7 @@ control.target.setValue(0.25, 0.25, 0);
 // Create sky
 const sky = background.sky;
 const skyMaterial = new SkyBoxMaterial(engine);
-// background.mode = BackgroundMode.Sky;
+background.mode = BackgroundMode.Sky;
 sky.material = skyMaterial;
 sky.mesh = PrimitiveMesh.createCuboid(engine, 1, 1, 1);
 
@@ -84,7 +81,7 @@ Promise.all([
 
       const sh = new SphericalHarmonics3();
       SphericalHarmonics3Baker.fromTextureCubeMap(cubeMap, sh);
-      // ambientLight.diffuseMode = DiffuseMode.SphericalHarmonics;
+      ambientLight.diffuseMode = DiffuseMode.SphericalHarmonics;
       ambientLight.diffuseSphericalHarmonics = sh;
     })
 ]).then(() => {
