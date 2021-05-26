@@ -70,5 +70,6 @@
       { "src": "probe-reflection", "label": "环境反射探针" },
       { "src": "gltf-loader", "label": "GLTF Loader" }
     ]
-  }
+  },
+  { "group": "性能", "src": "performance", "demos": [{ "src": "animation", "label": "动画" }] }
 ]
