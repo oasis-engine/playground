@@ -1,6 +1,6 @@
 import { OrbitControl } from "@oasis-engine/controls";
-import { Animation, AssetType, Camera, Color, GLTFResource, PBRMaterial, Texture2D, WebGLEngine } from "oasis-engine";
 import "@oasis-engine/stats";
+import { Animation, AssetType, Camera, GLTFResource, PBRMaterial, Texture2D, WebGLEngine } from "oasis-engine";
 
 // Create engine object.
 const engine = new WebGLEngine("o3-demo");
@@ -9,7 +9,7 @@ engine.canvas.resizeByClientSize();
 // Create root entity and get scene.
 const scene = engine.sceneManager.activeScene;
 const rootEntity = scene.createRootEntity();
-scene.ambientLight.diffuseSolidColor = new Color(1, 1, 1, 1);
+scene.ambientLight.diffuseSolidColor.setValue(1, 1, 1, 1);
 
 // Create camera.
 const cameraEntity = rootEntity.createChild("Camera");
