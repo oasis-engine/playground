@@ -54,9 +54,8 @@ engine.resourceManager
     }, 3000);
     if (animations) {
       animations.forEach((clip: AnimationClip) => {
-        const animatorState = new AnimatorState(clip.name);
+        const animatorState = animatorStateMachine.addState(clip.name);
         animatorState.clip = clip;
-        animatorStateMachine.addState(clip.name);
       });
     }
     animator.play();

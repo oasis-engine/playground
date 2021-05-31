@@ -21,8 +21,7 @@
   "dependencies": {
     "@oasis-engine/controls": "^0.2.0",
     "@oasis-engine/framebuffer-picker": "^0.2.0",
-    "dat.gui": "^0.7.7",
-    "oasis-engine": "^0.2.0"
+    "dat.gui": "^0.7.7"
   },
   "devDependencies": {
     "@babel/core": "^7.12.1",

@@ -12,8 +12,7 @@ import {
   AnimatorControllerLayer,
   AnimatorStateMachine,
   AnimatorLayerBlendingMode,
-  AnimationClip,
-  AnimatorState
+  AnimationClip
 } from "oasis-engine";
 
 Logger.enable();
@@ -55,12 +54,13 @@ engine.resourceManager
     layer1.blendingMode = AnimatorLayerBlendingMode.Additive;
     if (animations) {
       animations.forEach((clip: AnimationClip) => {
-        const animatorState = new AnimatorState(clip.name);
-        animatorState.clip = clip;
-        animatorStateMachine.addState(clip.name);
         if (clip.name === "sneak_pose") {
-          clip.clipStartTime = clip.length;
-          animatorStateMachine1.addState(clip.name);
+          const animatorState2 = animatorStateMachine1.addState(clip.name);
+          animatorState2.clip = clip;
+          animatorState2.clipStartTime = clip.length;
+        } else {
+          const animatorState = animatorStateMachine.addState(clip.name);
+          animatorState.clip = clip;
         }
       });
     }

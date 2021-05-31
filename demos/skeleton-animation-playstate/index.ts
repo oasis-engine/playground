@@ -50,9 +50,8 @@ engine.resourceManager
     layer.stateMachine = animatorStateMachine;
     if (animations) {
       animations.forEach((clip: AnimationClip) => {
-        const animatorState = new AnimatorState(clip.name);
+        const animatorState = animatorStateMachine.addState(clip.name);
         animatorState.clip = clip;
-        animatorStateMachine.addState(clip.name);
       });
     }
     animator.playStateName("run");
