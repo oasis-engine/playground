@@ -3,7 +3,6 @@ import {
   Animator,
   Camera,
   DirectLight,
-  EnvironmentMapLight,
   Logger,
   SystemInfo,
   Vector3,
@@ -31,7 +30,6 @@ cameraEntity.addComponent(Camera);
 cameraEntity.addComponent(OrbitControl).target = new Vector3(0, 1, 0);
 
 const lightNode = rootEntity.createChild("light_node");
-rootEntity.addComponent(EnvironmentMapLight);
 lightNode.addComponent(DirectLight).intensity = 0.6;
 lightNode.transform.lookAt(new Vector3(0, 0, 1));
 lightNode.transform.rotate(new Vector3(0, 90, 0));
@@ -54,7 +52,7 @@ engine.resourceManager
         animatorState.clip = clip;
       });
     }
-    animator.playStateName("run");
+    animator.playState("run");
     rootEntity.addChild(defaultSceneRoot);
   });
 
