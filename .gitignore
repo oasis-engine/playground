@@ -13,6 +13,5 @@ config.local.js
 .umi-production
 basement_dist
 mpa
-page.json
 .idea
 oasis3d-playground-mini

@@ -8,7 +8,8 @@ const modules = {
   "dat.gui": "dat",
   "oasis-engine": "oasisEngine",
   "@oasis-engine/controls": "@oasisEngine/controls",
-  "@oasis-engine/framebuffer-picker": "@oasisEngine/framebufferPicker"
+  "@oasis-engine/framebuffer-picker": "@oasisEngine/framebufferPicker",
+  "@oasis-engine/engine-spine": "oasisSpine",
 };
 
 /** String.replace(reg,to) */
