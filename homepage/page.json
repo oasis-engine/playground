@@ -1,0 +1,27 @@
+[
+  { "img": null, "intro": "", "name": "buffer-geometry" },
+  { "img": null, "intro": "", "name": "camera-culling-mask" },
+  {
+    "img": "avatar.png",
+    "intro": "漫游相机，一般用于游戏视角，支持鼠标或触摸进行环绕漫游，也支持键盘移动和跳跃\n",
+    "name": "controls-free"
+  },
+  { "img": "avatar.png", "intro": "支持像素级别的精确对象拾取功能", "name": "framebuffer-picker" },
+  { "img": null, "intro": "", "name": "particle-renderer" },
+  { "img": null, "intro": "", "name": "particle-renderer-spritesheet" },
+  { "img": "avatar.png", "intro": "业界主流的 PBR 渲染模型，支持金属粗糙度/高光光泽度工作流", "name": "pbr" },
+  { "img": "avatar.png", "intro": "用 CubeProbe 实现动态环境反射", "name": "probe-reflection" },
+  { "img": null, "intro": "", "name": "renderer-cull" },
+  { "img": null, "intro": "", "name": "shader-water" },
+  { "img": null, "intro": "", "name": "skeleton-animatin-additive" },
+  { "img": null, "intro": "", "name": "skeleton-animatin-crossfade" },
+  {
+    "img": "avatar.png",
+    "intro": "引擎支持使用骨骼纹理，当超出平台上线时，会自动使用骨骼纹理技术，能支撑更多关节的骨骼动画，如本案例模型有 66 个骨骼关节\n",
+    "name": "skeleton-animation"
+  },
+  { "img": null, "intro": "", "name": "skeleton-animation-playstate" },
+  { "img": "avatar.png", "intro": "引擎支持各种灯光的阴影功能\n", "name": "spotLighting-shadow" },
+  { "img": null, "intro": "", "name": "sprite-renderer" },
+  { "img": null, "intro": "视频纹理", "name": "video-texture" }
+]
