@@ -49,7 +49,7 @@ engine.resourceManager
         animatorState.clip = clip;
       });
     }
-    animator.playState("run");
+    animator.play("run");
     rootEntity.addChild(defaultSceneRoot);
   });
 

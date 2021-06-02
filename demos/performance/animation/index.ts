@@ -1,6 +1,6 @@
 import { OrbitControl } from "@oasis-engine/controls";
 import "@oasis-engine/stats";
-import { Animation, AssetType, Camera, GLTFResource, PBRMaterial, Texture2D, WebGLEngine } from "oasis-engine";
+import { Animator, AssetType, Camera, GLTFResource, PBRMaterial, Texture2D, WebGLEngine } from "oasis-engine";
 
 // Create engine object.
 const engine = new WebGLEngine("o3-demo");
@@ -38,9 +38,9 @@ engine.resourceManager
       material.baseTexture = baseTexture;
       material.baseColor.setValue(1, 1, 1, 1);
     });
-
-    for (let i = 0; i < 8; i++) {
-      for (let j = 0; j < 8; j++) {
+    let a = [];
+    for (let i = 0; i < 30; i++) {
+      for (let j = 0; j < 30; j++) {
         const huabeiClone = huabei.clone();
         rootEntity.addChild(huabeiClone);
 
@@ -48,8 +48,9 @@ engine.resourceManager
         transform.setRotation(0, -90, 0);
         transform.setScale(0.5, 0.5, 0.5);
         transform.setPosition(i * 1.0 - 3.0, j * 1.2, -j * 3.5);
-
-        huabeiClone.getComponent(Animation).playAnimationClip("A");
+        a[i + j] = huabeiClone;
+        huabeiClone.getComponent(Animator).play("A");
+        console.log(huabeiClone.getComponent(Animator));
       }
     }
   });

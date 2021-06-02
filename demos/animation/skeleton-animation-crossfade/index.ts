@@ -55,8 +55,7 @@ engine.resourceManager
         }
       });
     }
-    console.log(222);
-    animator.playState("walk");
+    animator.play("walk");
 
     rootEntity.addChild(defaultSceneRoot);
   });

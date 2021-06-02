@@ -51,19 +51,20 @@ engine.resourceManager
     layer1.blendingMode = AnimatorLayerBlendingMode.Additive;
     if (animations) {
       animations.forEach((clip: AnimationClip) => {
+        if (clip.name === "agree") {
+          const animatorState = animatorStateMachine.addState(clip.name);
+          animatorState.clip = clip;
+        }
         if (clip.name === "sneak_pose") {
           const animatorState2 = animatorStateMachine1.addState(clip.name);
           animatorState2.clip = clip;
           animatorState2.clipStartTime = clip.length;
         }
-        if (clip.name === "agree") {
-          const animatorState = animatorStateMachine.addState(clip.name);
-          animatorState.clip = clip;
-        }
       });
     }
     rootEntity.addChild(defaultSceneRoot);
-    animator.play();
+    animator.play("agree", 0);
+    animator.play("sneak_pose", 1);
   });
 
 engine.run();
