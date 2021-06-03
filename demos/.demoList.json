@@ -45,7 +45,14 @@
       { "src": "blinn-phong", "label": "Blinn-Phong Material" }
     ]
   },
-  { "group": "纹理", "src": "texture", "demos": [{ "src": "video-texture", "label": "视频纹理" }] },
+  {
+    "group": "纹理",
+    "src": "texture",
+    "demos": [
+      { "src": "video-texture", "label": "视频纹理" },
+      { "src": "render-target", "label": "Render Target" }
+    ]
+  },
   {
     "group": "动画系统",
     "src": "animation",
