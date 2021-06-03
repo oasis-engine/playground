@@ -1,6 +1,6 @@
+const demoList = require("./demos/.demoList.json")
 const path = require("path");
 const fs = require("fs-extra");
-const SRC_PATH = "demos";
 const OUT_PATH = "mpa";
 const templateStr = fs.readFileSync("homepage/iframe.ejs", "utf8");
 
@@ -12,66 +12,28 @@ String.prototype.replaceEJS = function (regStr, replaceStr) {
 // clear mpa
 fs.emptyDirSync(path.resolve(__dirname, OUT_PATH));
 
-// filter index
-const pages = fs
-  .readdirSync(path.resolve(__dirname, SRC_PATH))
-  .filter((pageName) => {
-    const pagePath = path.resolve(__dirname, SRC_PATH, pageName);
-    const stats = fs.statSync(pagePath);
-    if (stats.isDirectory()) {
-      const files = fs.readdirSync(pagePath);
-      const haveIndex = files.some((fileName) => fileName === "index.ts");
-      if (haveIndex) return true;
-    }
-  })
-  // generate mpa/*
-  .map((pageName) => {
-    const pagePath = path.resolve(__dirname, SRC_PATH, pageName);
-    const files = fs.readdirSync(pagePath);
-    let img = null;
-    let intro = "";
-    let codeUrl = "";
+demoList.forEach((item) => {
+  if (item.group) {
+    const groupSrc = item.src;
 
-    fs.outputFileSync(path.resolve(__dirname, OUT_PATH, pageName + ".js"), `import "../demos/${pageName}"`);
+    item.demos.forEach((demo) => {
+      const demoSrc = demo.src;
+      const ejs = templateStr.replaceEJS("title", demoSrc).replaceEJS("url", `./${demoSrc}.js`);
 
-    // avatar.jpg
-    files.some((fileName) => {
-      if (/^(avatar\.(jpg|png))$/.test(fileName)) {
-        img = RegExp.$1;
-        return true;
-      }
+      fs.outputFileSync(
+        path.resolve(__dirname, OUT_PATH, groupSrc, demoSrc + ".js"),
+        `import "../../demos/${groupSrc}/${demoSrc}"`
+      );
+      fs.outputFileSync(path.resolve(__dirname, OUT_PATH, groupSrc, demoSrc + ".html"), ejs);
     });
+  } else {
+    const { src } = item;
+    const ejs = templateStr.replaceEJS("title", src).replaceEJS("url", `./${src}.js`);
 
-    // README.md
-    files.some((fileName) => {
-      if (/^README\.md$/.test(fileName)) {
-        intro = fs.readFileSync(path.resolve(pagePath, "README.md"), "utf-8");
-        return true;
-      }
-    });
-
-    // code.json
-    files.some((fileName) => {
-      if (/^code\.json$/.test(fileName)) {
-        const code = fs.readFileSync(path.resolve(pagePath, "code.json"), "utf-8");
-        const codeJSON = JSON.parse(code);
-        codeUrl = codeJSON.riddle;
-        return true;
-      }
-    });
-
-    const ejs = templateStr.replaceEJS("title", pageName).replaceEJS("url", `./${pageName}.js`);
-
-    fs.outputFileSync(path.resolve(__dirname, OUT_PATH, pageName + ".html"), ejs);
-    return {
-      img,
-      intro,
-      name: pageName
-    };
-  });
-
-// generate page.json
-fs.outputFileSync(path.resolve(__dirname, "homepage/page.json"), JSON.stringify(pages));
+    fs.outputFileSync(path.resolve(__dirname, OUT_PATH, src + ".js"), `import "../demos/${src}"`);
+    fs.outputFileSync(path.resolve(__dirname, OUT_PATH, src + ".html"), ejs);
+  }
+});
 
 module.exports = {
   open: true,
