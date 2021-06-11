@@ -19,8 +19,8 @@
     ]
   },
   {
-    "group": "Sprite",
-    "src": "sprite",
+    "group": "2D",
+    "src": "2d",
     "demos": [
       { "src": "sprite-renderer", "label": "Sprite Renderer" },
       { "src": "sprite-flip", "label": "Sprite Flip" },
@@ -31,7 +31,8 @@
       { "src": "sprite-mask", "label": "Sprite Mask" },
       { "src": "sprite-material-blur", "label": "Sprite Material Blur" },
       { "src": "sprite-material-dissolve", "label": "Sprite Material Dissolve" },
-      { "src": "lottie", "label": "Lottie Basic" }
+      { "src": "spine-animation", "label": "Spine Animation" },
+      { "src": "lottie", "label": "Lottie Renderer" }
     ]
   },
   {
@@ -81,7 +82,6 @@
       { "src": "particle-sprite-sheet", "label": "Particle Sprite Sheet" }
     ]
   },
-  { "group": "Spine", "src": "spine", "demos": [{ "src": "spine-animation", "label": "Spine Animation" }] },
   {
     "group": "Advance",
     "src": "advance",
