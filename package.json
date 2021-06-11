@@ -20,11 +20,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@oasis-engine/controls": "^0.3.0",
+    "@oasis-engine/controls": "0.4.0-alpha.0",
     "@oasis-engine/engine-spine": "^0.1.2",
-    "@oasis-engine/framebuffer-picker": "^0.3.0",
+    "@oasis-engine/framebuffer-picker": "0.4.0-alpha.0",
+    "@oasis-engine/lottie": "^0.0.2",
     "dat.gui": "^0.7.7",
-    "oasis-engine": "^0.3.0"
+    "oasis-engine": "0.4.0-alpha.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.1",

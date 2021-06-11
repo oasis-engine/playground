@@ -278,11 +278,11 @@ let preState = new RenderTarget(engine, width, height, new RenderColorTexture(en
 camera.enableFrustumCulling = false;
 
 particleEntity.isActive = false;
-particleShaderData.setVector2("uScreen", new Vector2(512, 512));
 camera.renderTarget = nextState;
 camera.render();
 camera.renderTarget = preState;
 camera.render();
+particleShaderData.setVector2("uScreen", new Vector2(512, 512));
 
 class ParticleExcess extends Script {
   private t: number = 0;

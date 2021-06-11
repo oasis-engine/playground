@@ -30,7 +30,8 @@
       { "src": "sprite-sheetAnimation", "label": "Sprite SheetAnimation" },
       { "src": "sprite-mask", "label": "Sprite Mask" },
       { "src": "sprite-material-blur", "label": "Sprite Material Blur" },
-      { "src": "sprite-material-dissolve", "label": "Sprite Material Dissolve" }
+      { "src": "sprite-material-dissolve", "label": "Sprite Material Dissolve" },
+      { "src": "lottie", "label": "Lottie Basic" }
     ]
   },
   {
