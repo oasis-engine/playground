@@ -2,7 +2,7 @@ import { OrbitControl } from "@oasis-engine/controls";
 import { AssetType, Camera, Entity, Sprite, SpriteRenderer, Texture2D, WebGLEngine } from "oasis-engine";
 
 // Create engine object.
-const engine = new WebGLEngine("o3-demo");
+const engine = new WebGLEngine("canvas");
 engine.canvas.resizeByClientSize();
 
 // Create root entity.

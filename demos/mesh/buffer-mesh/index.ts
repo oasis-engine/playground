@@ -18,7 +18,7 @@ import {
 } from "oasis-engine";
 
 // Create engine and get root entity.
-const engine = new WebGLEngine("o3-demo");
+const engine = new WebGLEngine("canvas");
 engine.canvas.resizeByClientSize();
 
 const rootEntity = engine.sceneManager.activeScene.createRootEntity("Root");
@@ -26,7 +26,6 @@ const rootEntity = engine.sceneManager.activeScene.createRootEntity("Root");
 // Create light.
 const lightEntity = rootEntity.createChild("pointLight");
 const pointLight = lightEntity.addComponent(PointLight);
-pointLight.color = new Color(0.3, 0.4, 0.4);
 pointLight.distance = 10;
 lightEntity.transform.setPosition(2, 5, 5);
 // Create camera.

@@ -20,7 +20,7 @@ init();
 
 function init(): void {
   // Create engine.
-  const engine = new WebGLEngine("o3-demo");
+  const engine = new WebGLEngine("canvas");
   engine.canvas.resizeByClientSize();
 
   // Create root entity.

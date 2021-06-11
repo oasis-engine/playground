@@ -3,7 +3,7 @@ import "@oasis-engine/stats";
 import { Animation, AssetType, Camera, GLTFResource, PBRMaterial, Texture2D, WebGLEngine } from "oasis-engine";
 
 // Create engine object.
-const engine = new WebGLEngine("o3-demo");
+const engine = new WebGLEngine("canvas");
 engine.canvas.resizeByClientSize();
 
 // Create root entity and get scene.
@@ -21,8 +21,7 @@ cameraEntity.addComponent(OrbitControl);
 engine.resourceManager
   .load([
     {
-      url:
-        "https://gw.alipayobjects.com/os/loanprod/bf055064-3eec-4d40-bce0-ddf11dfbb88a/5d78db60f211d21a43834e23/4f5e6bb277dd2fab8e2097d7a418c5bc.gltf",
+      url: "https://gw.alipayobjects.com/os/loanprod/bf055064-3eec-4d40-bce0-ddf11dfbb88a/5d78db60f211d21a43834e23/4f5e6bb277dd2fab8e2097d7a418c5bc.gltf",
       type: AssetType.Perfab
     },
     {

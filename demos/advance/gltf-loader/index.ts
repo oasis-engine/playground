@@ -83,7 +83,7 @@ class Oasis {
   cubeTextures: Record<string, TextureCubeMap> = {};
   textures: Record<string, Texture2D> = {};
 
-  engine: WebGLEngine = new WebGLEngine("o3-demo");
+  engine: WebGLEngine = new WebGLEngine("canvas");
   scene: Scene = this.engine.sceneManager.activeScene;
   skyMaterial: SkyBoxMaterial = new SkyBoxMaterial(this.engine);
 

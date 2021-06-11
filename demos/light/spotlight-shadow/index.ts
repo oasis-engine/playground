@@ -39,7 +39,7 @@ class LookAtFocus extends Script {
 }
 
 //-- create engine object
-const engine = new WebGLEngine("o3-demo");
+const engine = new WebGLEngine("canvas");
 engine.canvas.resizeByClientSize();
 
 const scene = engine.sceneManager.activeScene;

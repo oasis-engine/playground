@@ -3,7 +3,7 @@ import * as dat from "dat.gui";
 import { AssetType, Camera, Entity, Sprite, SpriteRenderer, Texture2D, Vector2, WebGLEngine } from "oasis-engine";
 
 // Create engine object.
-const engine = new WebGLEngine("o3-demo");
+const engine = new WebGLEngine("canvas");
 engine.canvas.resizeByClientSize();
 
 // Create root entity.

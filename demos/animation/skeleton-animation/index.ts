@@ -3,7 +3,7 @@ import { Animation, Camera, DirectLight, GLTFResource, Logger, Vector3, WebGLEng
 
 Logger.enable();
 
-const engine = new WebGLEngine("o3-demo");
+const engine = new WebGLEngine("canvas");
 engine.canvas.resizeByClientSize();
 
 const scene = engine.sceneManager.activeScene;

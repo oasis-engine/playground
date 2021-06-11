@@ -10,7 +10,8 @@
     "dev:demosify": "demosify --serve",
     "build": "demosify --prod",
     "b:mini": "node scripts/to-mini-program.js",
-    "add-demo": "node scripts/add-demo.js"
+    "add-demo": "node scripts/add-demo.js",
+    "migrate": "node scripts/migrate.js"
   },
   "repository": {
     "type": "git",

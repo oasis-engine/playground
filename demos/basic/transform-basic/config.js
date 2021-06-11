@@ -2,7 +2,7 @@ import transform from "../../transform";
 
 export default async () => {
   const [htmlCode, jsCode, cssCode] = await Promise.all([
-    import("!raw-loader!./index.html"),
+    import("!raw-loader!../../../template.html"),
     import("!raw-loader!./index.ts"),
     import("!raw-loader!../../../template.css")
   ]);

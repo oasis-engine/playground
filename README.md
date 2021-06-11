@@ -15,6 +15,7 @@ Then, to build the source, using npm:
 ```sh
 npm run dev
 ```
+
 ## Contributing
 
 Everyone is welcome to join us! Whether you have found a bug or want to contribute a wonderful case.
@@ -28,5 +29,3 @@ npm run add-demo
 After entering the name as prompted, you can start development in `/demos/{group name}/{demo name}/index.ts`.
 
 _You need to execute `npm run dev` again after Adding demo._
-
-

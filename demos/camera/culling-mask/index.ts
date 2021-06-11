@@ -3,7 +3,7 @@ import * as o3 from "oasis-engine";
 import { DirectLight, Logger } from "oasis-engine";
 
 Logger.enable();
-const engine = new o3.WebGLEngine("o3-demo");
+const engine = new o3.WebGLEngine("canvas");
 engine.canvas.resizeByClientSize();
 const rootEntity = engine.sceneManager.activeScene.createRootEntity();
 

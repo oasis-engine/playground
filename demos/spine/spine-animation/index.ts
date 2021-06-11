@@ -3,7 +3,7 @@ import { Camera, Entity, Logger, Vector3, WebGLEngine } from "oasis-engine";
 
 Logger.enable();
 
-const engine = new WebGLEngine("o3-demo");
+const engine = new WebGLEngine("canvas");
 engine.canvas.resizeByClientSize();
 
 const scene = engine.sceneManager.activeScene;

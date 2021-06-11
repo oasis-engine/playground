@@ -12,7 +12,7 @@ import {
   DiffuseMode
 } from "oasis-engine";
 
-const engine = new WebGLEngine("o3-demo");
+const engine = new WebGLEngine("canvas");
 engine.canvas.resizeByClientSize();
 const scene = engine.sceneManager.activeScene;
 const rootNode = scene.createRootEntity();
@@ -84,7 +84,7 @@ engine.resourceManager.load(resources).then((res) => {
     }
   };
 
-  document.getElementById("o3-demo").addEventListener("mousedown", (e) => {
+  document.getElementById("canvas").addEventListener("mousedown", (e) => {
     // console.log(e.offsetX, e.offsetY);
     framebufferPicker.pick(e.offsetX, e.offsetY);
   });
