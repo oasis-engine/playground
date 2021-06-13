@@ -1,27 +1,102 @@
 [
-  { "label": "PBR材质", "src": "pbr" },
-  { "label": "骨骼动画", "src": "skeleton-animation" },
-  { "label": "聚光灯-阴影", "src": "spotLighting-shadow" },
-  { "label": "漫游相机", "src": "controls-free" },
-  { "label": "帧拾取", "src": "framebuffer-picker" },
-  { "label": "环境反射探针", "src": "probe-reflection" },
-  { "label": "视频纹理", "src": "video-texture" },
-  { "label": "基本网格", "src": "primitive-mesh" },
-  { "label": "模型网格", "src": "model-mesh" },
-  { "label": "缓冲网格", "src": "buffer-mesh" },
-  { "label": "视锥体剔除", "src": "renderer-cull" },
-  { "label": "粒子渲染器", "src": "particle-renderer" },
-  { "label": "粒子渲染器精灵图", "src": "particle-renderer-spritesheet" },
-  { "label": "相机渲染遮罩", "src": "camera-culling-mask" },
-  { "label": "动画渐变过渡", "src": "animation-cross-fade" },
-  { "label": "自定义材质-水", "src": "shader-water" },
-  { "label": "精灵渲染器", "src": "sprite-renderer" },
-  { "label": "变换", "src": "transform-x" },
-  { "label": "PBR-基本", "src": "pbr-base" },
-  { "label": "纹理缩放偏移", "src": "material-tilingoffset" },
-  { "label": "精灵翻转", "src": "sprite-flip" },
-  { "label": "精灵自定义材质", "src": "sprite-material" },
-  { "label": "精灵颜色", "src": "sprite-color" },
-  { "label": "Spine 动画", "src": "spine-animation" },
-  { "label": "Spine 动画性能", "src": "spine-performance" }
+  {
+    "group": "Basic",
+    "src": "basic",
+    "demos": [
+      { "src": "transform-basic", "label": "Transform Basic" },
+      { "src": "script-basic", "label": "Script Basic" },
+      { "src": "scene-basic", "label": "Scene Basic" },
+      { "src": "gltf-basic", "label": "GLTF Basic" }
+    ]
+  },
+  {
+    "group": "Camera",
+    "src": "camera",
+    "demos": [
+      { "src": "culling-mask", "label": "Culling Mask" },
+      { "src": "controls-free", "label": "Free Controls" },
+      { "src": "renderer-cull", "label": "Renderer Cull" }
+    ]
+  },
+  {
+    "group": "2D",
+    "src": "2d",
+    "demos": [
+      { "src": "sprite-renderer", "label": "Sprite Renderer" },
+      { "src": "sprite-flip", "label": "Sprite Flip" },
+      { "src": "sprite-color", "label": "Sprite Color" },
+      { "src": "sprite-region", "label": "Sprite Region" },
+      { "src": "sprite-pivot", "label": "Sprite Pivot" },
+      { "src": "sprite-sheetAnimation", "label": "Sprite SheetAnimation" },
+      { "src": "sprite-mask", "label": "Sprite Mask" },
+      { "src": "sprite-material-blur", "label": "Sprite Material Blur" },
+      { "src": "sprite-material-dissolve", "label": "Sprite Material Dissolve" },
+      { "src": "spine-animation", "label": "Spine Animation" },
+      { "src": "lottie", "label": "Lottie Renderer" }
+    ]
+  },
+  {
+    "group": "Mesh",
+    "src": "mesh",
+    "demos": [
+      { "src": "buffer-mesh", "label": "Buffer Mesh" },
+      { "src": "model-mesh", "label": "Model Mesh" },
+      { "src": "primitive-mesh", "label": "Primitive Mesh" }
+    ]
+  },
+  { "group": "Light", "src": "light", "demos": [{ "src": "spotlight-shadow", "label": "Spot Light" }] },
+  {
+    "group": "Material",
+    "src": "material",
+    "demos": [
+      { "src": "tiling-offset", "label": "Tiling Offset" },
+      { "src": "pbr-helmet", "label": "PBR Helmet" },
+      { "src": "pbr-base", "label": "PBR Base" },
+      { "src": "shader-water", "label": "Shader Water" },
+      { "src": "unlit-material", "label": "Unlit Material" },
+      { "src": "blinn-phong", "label": "Blinn Phong Material" },
+      { "src": "blend-mode", "label": "Blend Mode" }
+    ]
+  },
+  {
+    "group": "Texture",
+    "src": "texture",
+    "demos": [
+      { "src": "wrap-mode", "label": "Wrap Mode" },
+      { "src": "filter-mode", "label": "Filter Mode" }
+    ]
+  },
+  {
+    "group": "Animation",
+    "src": "animation",
+    "demos": [
+      { "src": "skeleton-animation", "label": "Skeleton Animation" },
+      { "src": "animation-cross-fade", "label": "Animation Cross Fade" }
+    ]
+  },
+  {
+    "group": "Particle",
+    "src": "particle",
+    "demos": [
+      { "src": "particle-renderer", "label": "Particle Renderer" },
+      { "src": "particle-sprite-sheet", "label": "Particle Sprite Sheet" }
+    ]
+  },
+  {
+    "group": "Advance",
+    "src": "advance",
+    "demos": [
+      { "src": "framebuffer-picker", "label": "Framebuffer Picker" },
+      { "src": "probe-reflection", "label": "Probe Reflection" },
+      { "src": "gltf-loader", "label": "GLTF Loader" }
+    ]
+  },
+  {
+    "group": "Performance",
+    "src": "performance",
+    "demos": [
+      { "src": "animation", "label": "Animation" },
+      { "src": "spine-performance", "label": "Spine" }
+    ]
+  }
 ]

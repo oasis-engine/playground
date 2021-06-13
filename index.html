@@ -6,33 +6,27 @@
   </head>
 
   <body>
-    <div class="header">
-      <a class="logo" href="https://oasis3d.alipay.com/" target="Home">
-        <img src="https://gw-office.alipayobjects.com/basement_prod/cd6a7701-4b8f-4225-9036-69a1001d55b7.webp" alt="" />
-      </a>
-    </div>
-
     <div class="container">
+      <div class="header">
+        <a class="logo" href="https://oasis3d.alipay.com/" target="Home">
+          <img src="https://gw.alipayobjects.com/zos/bmw-prod/a3bd25c4-dc50-40f7-88ea-6004566481b0.svg" alt="" />
+          <span> Oasis</span>
+        </a>
+      </div>
+      <input
+        placeholder="search..."
+        class="search-bar"
+        id="searchBar"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+      />
       <div class="nav-left">
-        <input
-          placeholder="search..."
-          class="search-bar"
-          id="searchBar"
-          autocorrect="off"
-          autocapitalize="off"
-          spellcheck="false"
-        />
         <div class="item-list" id="itemList"></div>
       </div>
 
       <div class="nav-right">
-        <a class="card" id="cardPrefab">
-          <div class="img-container">
-            <div class="img"></div>
-          </div>
-          <div class="title"></div>
-          <div class="intro"></div>
-        </a>
+        <iframe id="iframe" allowfullscreen src="" frameborder="0"></iframe>
       </div>
     </div>
 
