@@ -10,12 +10,18 @@
     ]
   },
   {
+    "group": "Scene",
+    "src": "scene",
+    "demos": [{ "src": "background", "label": "Scene Background" }]
+  },
+  {
     "group": "Camera",
     "src": "camera",
     "demos": [
       { "src": "culling-mask", "label": "Culling Mask" },
       { "src": "controls-free", "label": "Free Controls" },
-      { "src": "renderer-cull", "label": "Renderer Cull" }
+      { "src": "renderer-cull", "label": "Renderer Cull" },
+      { "src": "ortho-control", "label": "Ortho Controls" }
     ]
   },
   {
@@ -41,7 +47,8 @@
     "demos": [
       { "src": "buffer-mesh", "label": "Buffer Mesh" },
       { "src": "model-mesh", "label": "Model Mesh" },
-      { "src": "primitive-mesh", "label": "Primitive Mesh" }
+      { "src": "primitive-mesh", "label": "Primitive Mesh" },
+      { "src": "obj-loader", "label": "OBJ Loader Use Model Mesh" }
     ]
   },
   { "group": "Light", "src": "light", "demos": [{ "src": "spotlight-shadow", "label": "Spot Light" }] },
